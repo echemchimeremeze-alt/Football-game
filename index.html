@@ -2,24 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<title>DEBRYNE PENALTY V3</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>DEBRYNE PENALTY V4</title>
 
 <style>
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
     -webkit-tap-highlight-color:transparent;
 }
 
 body{
-    font-family:Arial,sans-serif;
     background:#020604;
     color:white;
+    font-family:Arial,sans-serif;
     overflow:hidden;
-    touch-action:manipulation;
+    touch-action:none;
 }
 
 .game{
@@ -29,37 +28,33 @@ body{
     margin:auto;
     position:relative;
     overflow:hidden;
-    background:#075b29;
+    background:#075d29;
 }
 
-/* =========================
-   START SCREEN
-========================= */
+/* START */
 
 .start{
     position:absolute;
     inset:0;
     z-index:200;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     text-align:center;
     padding:25px;
 
     background:
-    linear-gradient(rgba(0,0,0,.58),rgba(0,0,0,.86)),
-    radial-gradient(circle at 50% 30%,#168d43,#03170b);
+    linear-gradient(rgba(0,0,0,.58),rgba(0,0,0,.88)),
+    radial-gradient(circle at 50% 30%,#168f45,#03160a);
 }
 
-.start-box{
+.startBox{
     width:100%;
     max-width:390px;
 }
 
 .logo{
-    font-size:43px;
+    font-size:42px;
     font-weight:1000;
     letter-spacing:2px;
 }
@@ -68,38 +63,38 @@ body{
     color:#ffd21a;
 }
 
-.version{
-    margin-top:7px;
+.v4{
     color:#aaa;
     font-size:11px;
     letter-spacing:4px;
+    margin-top:7px;
 }
 
-.start-box h2{
-    margin-top:45px;
+.startBox h2{
+    margin-top:40px;
     font-size:22px;
 }
 
-.start-box p{
+.startBox p{
     color:#bbb;
     font-size:13px;
     line-height:1.6;
-    margin:12px 0 25px;
+    margin:12px 0 22px;
 }
 
 .difficulty{
     display:flex;
-    gap:8px;
-    margin-bottom:18px;
+    gap:7px;
+    margin-bottom:17px;
 }
 
 .diff{
     flex:1;
-    padding:12px 5px;
-    border:1px solid rgba(255,255,255,.25);
-    background:#17241c;
-    color:white;
+    padding:12px 4px;
     border-radius:10px;
+    border:1px solid rgba(255,255,255,.25);
+    background:#18241d;
+    color:white;
     font-weight:bold;
 }
 
@@ -108,46 +103,40 @@ body{
     color:#111;
 }
 
-.start-btn{
+.startBtn{
     width:100%;
-    padding:17px;
     border:0;
+    padding:17px;
     border-radius:13px;
     background:#ffd21a;
     color:#111;
     font-size:18px;
     font-weight:900;
-    box-shadow:0 5px 0 #9f8000;
+    box-shadow:0 5px 0 #9c7b00;
 }
 
-.start-btn:active{
-    transform:translateY(4px);
-    box-shadow:0 1px 0 #9f8000;
-}
-
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 .header{
     position:absolute;
     top:0;
+    left:0;
     width:100%;
     height:70px;
     z-index:50;
 
     display:flex;
-    align-items:center;
     justify-content:space-between;
+    align-items:center;
 
     padding:0 16px;
 
-    background:rgba(0,0,0,.46);
+    background:rgba(0,0,0,.47);
 }
 
 .brand{
-    font-size:17px;
     font-weight:900;
+    font-size:17px;
 }
 
 .brand span{
@@ -164,16 +153,13 @@ body{
     display:block;
     color:#aaa;
     font-size:8px;
-    letter-spacing:1px;
 }
 
 .stat strong{
     font-size:20px;
 }
 
-/* =========================
-   STADIUM
-========================= */
+/* STADIUM */
 
 .stadium{
     position:absolute;
@@ -184,9 +170,9 @@ body{
     linear-gradient(
         to bottom,
         #26322c 0,
-        #111914 18%,
-        #08722f 40%,
-        #064c23 100%
+        #111913 18%,
+        #08732f 40%,
+        #064d23 100%
     );
 }
 
@@ -221,18 +207,16 @@ body{
     linear-gradient(#08772f,#064d23);
 }
 
-/* =========================
-   GOAL
-========================= */
+/* GOAL */
 
 .goal{
     position:absolute;
-    top:115px;
+    top:108px;
     left:50%;
     transform:translateX(-50%);
 
     width:315px;
-    height:190px;
+    height:195px;
 
     border:7px solid white;
     border-bottom:0;
@@ -242,14 +226,14 @@ body{
         90deg,
         transparent 0,
         transparent 23px,
-        rgba(255,255,255,.25) 24px,
+        rgba(255,255,255,.24) 24px,
         transparent 25px
     ),
     repeating-linear-gradient(
         0deg,
         transparent 0,
         transparent 23px,
-        rgba(255,255,255,.25) 24px,
+        rgba(255,255,255,.24) 24px,
         transparent 25px
     );
 
@@ -258,14 +242,58 @@ body{
     z-index:5;
 }
 
-/* =========================
-   KEEPER
-========================= */
+/* TARGET */
+
+.targetArea{
+    position:absolute;
+    top:115px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:295px;
+    height:175px;
+
+    z-index:10;
+
+    border:1px dashed rgba(255,255,255,.28);
+}
+
+.aimPoint{
+    position:absolute;
+
+    width:30px;
+    height:30px;
+
+    border:3px solid #ffd21a;
+    border-radius:50%;
+
+    transform:translate(-50%,-50%);
+
+    box-shadow:0 0 12px rgba(255,210,26,.8);
+
+    pointer-events:none;
+
+    transition:left .08s,top .08s;
+}
+
+.aimPoint:after{
+    content:"";
+    position:absolute;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#ffd21a;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+}
+
+/* KEEPER */
 
 .keeper{
     position:absolute;
 
-    top:153px;
+    top:150px;
     left:50%;
 
     width:72px;
@@ -273,7 +301,7 @@ body{
 
     transform:translateX(-50%);
 
-    z-index:12;
+    z-index:15;
 
     transition:
     transform .55s cubic-bezier(.2,.8,.2,1);
@@ -331,21 +359,19 @@ body{
     right:18px;
 }
 
-.keeper.left{
-    transform:translateX(-135px) rotate(-38deg);
+.keeper.diveLeft{
+    transform:translateX(-135px) rotate(-40deg);
 }
 
-.keeper.right{
-    transform:translateX(65px) rotate(38deg);
+.keeper.diveRight{
+    transform:translateX(65px) rotate(40deg);
 }
 
-.keeper.center{
-    transform:translateX(-50%) scale(1.1);
+.keeper.diveCenter{
+    transform:translateX(-50%) scale(1.12);
 }
 
-/* =========================
-   BALL
-========================= */
+/* BALL */
 
 .ball{
     position:absolute;
@@ -354,11 +380,11 @@ body{
     height:50px;
 
     left:50%;
-    bottom:160px;
+    bottom:150px;
 
     transform:translateX(-50%);
 
-    z-index:20;
+    z-index:25;
 
     transition:
     left .65s cubic-bezier(.15,.8,.2,1),
@@ -366,119 +392,67 @@ body{
     transform .65s;
 }
 
-.ball::after{
+.ball:after{
     content:"⚽";
     font-size:50px;
     line-height:50px;
 }
 
-/* =========================
-   AIMING AREA
-========================= */
+/* INSTRUCTIONS */
 
-.aim-title{
+.instruction{
     position:absolute;
-    bottom:290px;
+    top:320px;
     width:100%;
     text-align:center;
-    font-size:11px;
+    font-size:12px;
     color:#ddd;
-    letter-spacing:1px;
     z-index:30;
 }
 
-.aim{
-    position:absolute;
-    left:50%;
-    bottom:220px;
-
-    transform:translateX(-50%);
-
-    width:270px;
-    height:80px;
-
-    display:flex;
-    justify-content:space-between;
-
-    z-index:30;
-}
-
-.target{
-    width:70px;
-    height:70px;
-
-    border-radius:50%;
-
-    border:2px solid rgba(255,255,255,.65);
-
-    background:rgba(0,0,0,.3);
-
-    color:white;
-
-    font-size:27px;
-
-    transition:.2s;
-}
-
-.target.active{
-    background:#ffd21a;
-    color:#111;
-    border-color:white;
-    transform:scale(1.12);
-}
-
-/* =========================
-   POWER
-========================= */
+/* POWER */
 
 .power{
     position:absolute;
-
     bottom:175px;
     left:50%;
-
     transform:translateX(-50%);
-
     width:250px;
-
-    z-index:30;
+    z-index:35;
 }
 
-.power-label{
+.powerTitle{
     text-align:center;
     font-size:9px;
     letter-spacing:2px;
     margin-bottom:5px;
 }
 
-.power-bar{
-    height:13px;
-    background:#171717;
+.powerBar{
+    width:100%;
+    height:14px;
     border-radius:20px;
-    overflow:hidden;
+    background:#181818;
     border:1px solid rgba(255,255,255,.4);
+    overflow:hidden;
 }
 
-.power-fill{
-    height:100%;
+.powerFill{
     width:60%;
+    height:100%;
     background:#ffd21a;
 }
 
-/* =========================
-   SHOOT
-========================= */
+/* SHOOT */
 
 .shoot{
     position:absolute;
 
     bottom:30px;
     left:50%;
-
     transform:translateX(-50%);
 
     width:220px;
-
     padding:16px;
 
     border:0;
@@ -492,27 +466,23 @@ body{
 
     z-index:40;
 
-    box-shadow:0 5px 0 #a07e00;
+    box-shadow:0 5px 0 #a07d00;
 }
 
-.shoot:active{
-    transform:translateX(-50%) translateY(4px);
-    box-shadow:0 1px 0 #a07e00;
+.shoot:disabled{
+    opacity:.5;
 }
 
-/* =========================
-   MESSAGE
-========================= */
+/* MESSAGE */
 
 .message{
     position:absolute;
 
-    top:325px;
+    top:350px;
     left:50%;
-
     transform:translateX(-50%);
 
-    z-index:60;
+    z-index:70;
 
     font-size:34px;
     font-weight:1000;
@@ -528,104 +498,101 @@ body{
     opacity:1;
 }
 
-.goal-msg{
-    color:#00ff6a;
+.goalMsg{
+    color:#00ff69;
 }
 
-.save-msg{
-    color:#ff4444;
+.saveMsg{
+    color:#ff4141;
 }
 
-/* =========================
-   RESULT
-========================= */
+/* RESULT */
 
 .result{
     position:absolute;
     inset:0;
-
     z-index:300;
 
     display:none;
-
     align-items:center;
     justify-content:center;
 
     padding:25px;
 
+    background:rgba(0,0,0,.88);
     text-align:center;
-
-    background:rgba(0,0,0,.86);
 }
 
 .result.show{
     display:flex;
 }
 
-.result-box{
+.resultBox{
     width:100%;
-    max-width:350px;
-
-    padding:30px 25px;
-
-    border-radius:22px;
+    max-width:360px;
 
     background:#102019;
+    border:1px solid rgba(255,255,255,.16);
 
-    border:1px solid rgba(255,255,255,.15);
+    border-radius:22px;
+    padding:30px 25px;
 }
 
-.result-box h1{
-    font-size:28px;
+.resultBox h1{
+    font-size:27px;
 }
 
-.final-score{
-    margin:18px 0;
+.finalScore{
     font-size:58px;
     font-weight:1000;
     color:#ffd21a;
+    margin:17px 0;
 }
 
-.result-info{
+.best{
     color:#aaa;
-    margin-bottom:23px;
+    margin-bottom:9px;
+}
+
+.resultText{
+    color:#bbb;
+    margin-bottom:22px;
 }
 
 .again{
     width:100%;
-    padding:16px;
-
     border:0;
+    padding:16px;
     border-radius:12px;
-
     background:#ffd21a;
     color:#111;
-
-    font-size:16px;
     font-weight:900;
+    font-size:16px;
 }
-
-/* =========================
-   RESPONSIVE
-========================= */
 
 @media(max-height:650px){
 
     .goal{
-        top:95px;
+        top:92px;
         height:160px;
+    }
+
+    .targetArea{
+        top:99px;
+        height:145px;
     }
 
     .keeper{
         top:130px;
     }
 
-    .aim-title{
-        bottom:255px;
+    .aimPoint{
+        width:27px;
+        height:27px;
     }
 
-    .aim{
-        bottom:190px;
+    .instruction{
+        top:285px;
     }
 
     .power{
@@ -637,7 +604,7 @@ body{
     }
 
     .ball{
-        bottom:135px;
+        bottom:130px;
     }
 }
 </style>
@@ -647,45 +614,42 @@ body{
 
 <div class="game">
 
-<!-- START SCREEN -->
+<!-- START -->
 
 <div class="start" id="startScreen">
 
-    <div class="start-box">
+    <div class="startBox">
 
         <div class="logo">
             DEBRYNE <span>PENALTY</span>
         </div>
 
-        <div class="version">
-            V3 • PENALTY SHOOTOUT
+        <div class="v4">
+            V4 • MOBILE SHOOTOUT
         </div>
 
         <h2>⚽ Beat the goalkeeper</h2>
 
         <p>
-            Choose your target, control your power
-            and score as many penalties as possible.
+            Drag the target around the goal to aim.
+            Watch the power meter and tap SHOOT.
         </p>
 
         <div class="difficulty">
 
-            <button
-                class="diff"
+            <button class="diff"
                 id="easy"
                 onclick="setDifficulty('easy')">
                 EASY
             </button>
 
-            <button
-                class="diff active"
+            <button class="diff active"
                 id="normal"
                 onclick="setDifficulty('normal')">
                 NORMAL
             </button>
 
-            <button
-                class="diff"
+            <button class="diff"
                 id="hard"
                 onclick="setDifficulty('hard')">
                 HARD
@@ -694,11 +658,9 @@ body{
         </div>
 
         <button
-            class="start-btn"
+            class="startBtn"
             onclick="startGame()">
-
             START SHOOTOUT
-
         </button>
 
     </div>
@@ -728,6 +690,11 @@ body{
             </strong>
         </div>
 
+        <div class="stat">
+            <small>BEST</small>
+            <strong id="best">0</strong>
+        </div>
+
     </div>
 
 </div>
@@ -744,9 +711,25 @@ body{
     <div class="goal"></div>
 
 
-    <!-- GOALKEEPER -->
+    <!-- AIMING AREA -->
 
-    <div class="keeper" id="keeper">
+    <div
+        class="targetArea"
+        id="targetArea">
+
+        <div
+            class="aimPoint"
+            id="aimPoint">
+        </div>
+
+    </div>
+
+
+    <!-- KEEPER -->
+
+    <div
+        class="keeper"
+        id="keeper">
 
         <div class="head"></div>
 
@@ -763,7 +746,19 @@ body{
 
     <!-- BALL -->
 
-    <div class="ball" id="ball"></div>
+    <div
+        class="ball"
+        id="ball">
+    </div>
+
+
+    <div
+        class="instruction"
+        id="instruction">
+
+        DRAG THE TARGET • THEN SHOOT
+
+    </div>
 
 
     <!-- MESSAGE -->
@@ -774,50 +769,18 @@ body{
     </div>
 
 
-    <!-- AIM -->
-
-    <div class="aim-title">
-        CHOOSE YOUR TARGET
-    </div>
-
-    <div class="aim">
-
-        <button
-            class="target"
-            id="leftTarget"
-            onclick="chooseTarget('left')">
-            ↖
-        </button>
-
-        <button
-            class="target active"
-            id="centerTarget"
-            onclick="chooseTarget('center')">
-            ↑
-        </button>
-
-        <button
-            class="target"
-            id="rightTarget"
-            onclick="chooseTarget('right')">
-            ↗
-        </button>
-
-    </div>
-
-
     <!-- POWER -->
 
     <div class="power">
 
-        <div class="power-label">
+        <div class="powerTitle">
             SHOOTING POWER
         </div>
 
-        <div class="power-bar">
+        <div class="powerBar">
 
             <div
-                class="power-fill"
+                class="powerFill"
                 id="powerFill">
             </div>
 
@@ -826,7 +789,7 @@ body{
     </div>
 
 
-    <!-- SHOOT -->
+    <!-- SHOOT BUTTON -->
 
     <button
         class="shoot"
@@ -846,19 +809,24 @@ body{
     class="result"
     id="result">
 
-    <div class="result-box">
+    <div class="resultBox">
 
         <h1>
             🏆 SHOOTOUT COMPLETE
         </h1>
 
-        <div class="final-score">
+        <div class="finalScore">
             <span id="finalScore">0</span>/5
         </div>
 
+        <div class="best">
+            BEST SCORE:
+            <strong id="resultBest">0</strong>/5
+        </div>
+
         <div
-            class="result-info"
-            id="resultInfo">
+            class="resultText"
+            id="resultText">
         </div>
 
         <button
@@ -879,24 +847,25 @@ body{
 <script>
 
 /* =========================
-   GAME VARIABLES
+   VARIABLES
 ========================= */
 
 let score = 0;
-
 let round = 1;
-
-let target = "center";
-
-let power = 60;
-
-let powerDirection = 1;
-
-let shooting = false;
 
 let difficulty = "normal";
 
+let shooting = false;
+
+let power = 60;
+let powerDirection = 1;
+
 let powerTimer;
+
+let aimX = 50;
+let aimY = 50;
+
+let dragging = false;
 
 
 /* =========================
@@ -905,6 +874,12 @@ let powerTimer;
 
 const startScreen =
 document.getElementById("startScreen");
+
+const targetArea =
+document.getElementById("targetArea");
+
+const aimPoint =
+document.getElementById("aimPoint");
 
 const keeper =
 document.getElementById("keeper");
@@ -915,17 +890,20 @@ document.getElementById("ball");
 const message =
 document.getElementById("message");
 
+const powerFill =
+document.getElementById("powerFill");
+
+const shootButton =
+document.getElementById("shootButton");
+
 const scoreDisplay =
 document.getElementById("score");
 
 const roundDisplay =
 document.getElementById("round");
 
-const powerFill =
-document.getElementById("powerFill");
-
-const shootButton =
-document.getElementById("shootButton");
+const bestDisplay =
+document.getElementById("best");
 
 const result =
 document.getElementById("result");
@@ -933,8 +911,22 @@ document.getElementById("result");
 const finalScore =
 document.getElementById("finalScore");
 
-const resultInfo =
-document.getElementById("resultInfo");
+const resultBest =
+document.getElementById("resultBest");
+
+const resultText =
+document.getElementById("resultText");
+
+
+/* =========================
+   BEST SCORE
+========================= */
+
+let bestScore =
+Number(localStorage.getItem("debrynePenaltyBest") || 0);
+
+bestDisplay.textContent =
+bestScore;
 
 
 /* =========================
@@ -973,7 +965,7 @@ function startGame(){
 
 
 /* =========================
-   POWER SYSTEM
+   POWER
 ========================= */
 
 function startPower(){
@@ -987,7 +979,6 @@ function startPower(){
         if(power >= 100){
 
             power = 100;
-
             powerDirection = -1;
 
         }
@@ -995,7 +986,6 @@ function startPower(){
         if(power <= 20){
 
             power = 20;
-
             powerDirection = 1;
 
         }
@@ -1004,34 +994,257 @@ function startPower(){
         power + "%";
 
     },40);
+
 }
 
 
 /* =========================
-   TARGET
+   AIM POSITION
 ========================= */
 
-function chooseTarget(direction){
+function updateAim(x,y){
 
-    if(shooting) return;
+    const rect =
+    targetArea.getBoundingClientRect();
 
-    target = direction;
+    let localX =
+    ((x - rect.left) / rect.width) * 100;
 
-    document
-    .getElementById("leftTarget")
-    .classList.remove("active");
+    let localY =
+    ((y - rect.top) / rect.height) * 100;
 
-    document
-    .getElementById("centerTarget")
-    .classList.remove("active");
 
-    document
-    .getElementById("rightTarget")
-    .classList.remove("active");
+    /*
+       Keep the target inside
+       the goal.
+    */
 
-    document
-    .getElementById(direction+"Target")
-    .classList.add("active");
+    localX =
+    Math.max(7,Math.min(93,localX));
+
+    localY =
+    Math.max(8,Math.min(92,localY));
+
+
+    aimX = localX;
+    aimY = localY;
+
+
+    aimPoint.style.left =
+    localX + "%";
+
+    aimPoint.style.top =
+    localY + "%";
+}
+
+
+/* =========================
+   TOUCH AIMING
+========================= */
+
+targetArea.addEventListener(
+    "touchstart",
+    function(e){
+
+        if(shooting) return;
+
+        dragging = true;
+
+        const touch =
+        e.touches[0];
+
+        updateAim(
+            touch.clientX,
+            touch.clientY
+        );
+
+    },
+    {passive:false}
+);
+
+
+targetArea.addEventListener(
+    "touchmove",
+    function(e){
+
+        if(!dragging || shooting)
+            return;
+
+        e.preventDefault();
+
+        const touch =
+        e.touches[0];
+
+        updateAim(
+            touch.clientX,
+            touch.clientY
+        );
+
+    },
+    {passive:false}
+);
+
+
+targetArea.addEventListener(
+    "touchend",
+    function(){
+
+        dragging = false;
+
+    }
+);
+
+
+/* =========================
+   MOUSE AIMING
+========================= */
+
+targetArea.addEventListener(
+    "mousedown",
+    function(e){
+
+        if(shooting) return;
+
+        dragging = true;
+
+        updateAim(
+            e.clientX,
+            e.clientY
+        );
+
+    }
+);
+
+document.addEventListener(
+    "mousemove",
+    function(e){
+
+        if(!dragging || shooting)
+            return;
+
+        updateAim(
+            e.clientX,
+            e.clientY
+        );
+
+    }
+);
+
+document.addEventListener(
+    "mouseup",
+    function(){
+
+        dragging = false;
+
+    }
+);
+
+
+/* =========================
+   SOUND ENGINE
+========================= */
+
+let audioContext;
+
+function audio(){
+
+    if(!audioContext){
+
+        audioContext =
+        new (window.AudioContext ||
+        window.webkitAudioContext)();
+
+    }
+
+    if(audioContext.state === "suspended"){
+
+        audioContext.resume();
+
+    }
+}
+
+
+function sound(type){
+
+    try{
+
+        audio();
+
+        const oscillator =
+        audioContext.createOscillator();
+
+        const gain =
+        audioContext.createGain();
+
+        oscillator.connect(gain);
+
+        gain.connect(
+            audioContext.destination
+        );
+
+
+        if(type === "kick"){
+
+            oscillator.frequency.value = 100;
+
+            gain.gain.setValueAtTime(
+                .18,
+                audioContext.currentTime
+            );
+
+            gain.gain.exponentialRampToValueAtTime(
+                .01,
+                audioContext.currentTime + .18
+            );
+
+        }
+
+
+        if(type === "goal"){
+
+            oscillator.frequency.value = 520;
+
+            gain.gain.setValueAtTime(
+                .18,
+                audioContext.currentTime
+            );
+
+            gain.gain.exponentialRampToValueAtTime(
+                .01,
+                audioContext.currentTime + .5
+            );
+
+        }
+
+
+        if(type === "save"){
+
+            oscillator.frequency.value = 120;
+
+            gain.gain.setValueAtTime(
+                .18,
+                audioContext.currentTime
+            );
+
+            gain.gain.exponentialRampToValueAtTime(
+                .01,
+                audioContext.currentTime + .35
+            );
+
+        }
+
+
+        oscillator.start();
+
+        oscillator.stop(
+            audioContext.currentTime + .55
+        );
+
+    }catch(e){
+
+        /* Sound is optional */
+
+    }
 }
 
 
@@ -1045,12 +1258,47 @@ function shoot(){
 
     shooting = true;
 
+    dragging = false;
+
     clearInterval(powerTimer);
 
     shootButton.disabled = true;
 
+    sound("kick");
 
-    /* goalkeeper reaction */
+
+    if(navigator.vibrate){
+
+        navigator.vibrate(30);
+
+    }
+
+
+    /*
+       Convert aim position
+       into a direction.
+    */
+
+    let direction;
+
+    if(aimX < 35){
+
+        direction = "left";
+
+    }else if(aimX > 65){
+
+        direction = "right";
+
+    }else{
+
+        direction = "center";
+
+    }
+
+
+    /*
+       Goalkeeper AI
+    */
 
     const directions =
     ["left","center","right"];
@@ -1058,25 +1306,16 @@ function shoot(){
     let keeperDirection;
 
 
-    /*
-       Difficulty changes goalkeeper
-       behaviour.
-    */
-
     if(difficulty === "easy"){
 
-        /*
-           Easy:
-           goalkeeper has a higher
-           chance of choosing center.
-        */
+        if(Math.random() < .35){
 
-        const random =
-        Math.random();
-
-        if(random < .55){
-
-            keeperDirection = "center";
+            keeperDirection =
+            directions[
+                Math.floor(
+                    Math.random()*3
+                )
+            ];
 
         }else{
 
@@ -1089,30 +1328,10 @@ function shoot(){
 
         }
 
-    }else if(difficulty === "hard"){
+    }
 
-        /*
-           Hard:
-           goalkeeper has a better
-           chance of guessing.
-        */
 
-        if(Math.random() < .45){
-
-            keeperDirection = target;
-
-        }else{
-
-            keeperDirection =
-            directions[
-                Math.floor(
-                    Math.random()*3
-                )
-            ];
-
-        }
-
-    }else{
+    if(difficulty === "normal"){
 
         keeperDirection =
         directions[
@@ -1124,72 +1343,112 @@ function shoot(){
     }
 
 
-    /* goalkeeper animation */
+    if(difficulty === "hard"){
+
+        if(Math.random() < .48){
+
+            keeperDirection =
+            direction;
+
+        }else{
+
+            keeperDirection =
+            directions[
+                Math.floor(
+                    Math.random()*3
+                )
+            ];
+
+        }
+
+    }
+
+
+    /* Keeper animation */
 
     keeper.className = "keeper";
 
     if(keeperDirection === "left"){
 
-        keeper.classList.add("left");
+        keeper.classList.add("diveLeft");
 
     }
 
     if(keeperDirection === "right"){
 
-        keeper.classList.add("right");
+        keeper.classList.add("diveRight");
 
     }
 
     if(keeperDirection === "center"){
 
-        keeper.classList.add("center");
-
-    }
-
-
-    /* ball animation */
-
-    if(target === "left"){
-
-        ball.style.left = "30%";
-
-    }else if(target === "right"){
-
-        ball.style.left = "70%";
-
-    }else{
-
-        ball.style.left = "50%";
+        keeper.classList.add("diveCenter");
 
     }
 
 
     /*
-       Power affects ball height.
+       Ball target.
+
+       The ball uses the actual
+       position of the aim marker.
     */
 
+    const targetLeft =
+    50 + (aimX - 50) * .72;
+
+    const targetBottom =
+    300 + (100 - aimY) * 1.25;
+
+
+    ball.style.left =
+    targetLeft + "%";
+
     ball.style.bottom =
-    (350 + power * .55) + "px";
+    targetBottom + "px";
+
+
+    /*
+       Power changes the scale.
+    */
+
+    const ballScale =
+    .48 + (power / 100) * .22;
+
 
     ball.style.transform =
-    "translateX(-50%) scale(.55) rotate(500deg)";
+    "translateX(-50%) scale(" +
+    ballScale +
+    ") rotate(720deg)";
 
 
     setTimeout(() => {
 
         /*
-           Stronger shots have a small
-           chance to beat a goalkeeper
-           even when he guesses correctly.
+           Distance from the
+           goalkeeper's likely zone.
         */
 
         let saved =
-        target === keeperDirection;
+        direction === keeperDirection;
+
+
+        /*
+           Very accurate corner shots
+           are harder to save.
+        */
+
+        const cornerShot =
+        aimX < 20 ||
+        aimX > 80 ||
+        aimY < 20;
+
 
         if(
             saved &&
-            power >= 90 &&
-            Math.random() < .28
+            cornerShot &&
+            power >= 70 &&
+            Math.random() < .55
         ){
 
             saved = false;
@@ -1197,7 +1456,32 @@ function shoot(){
         }
 
 
+        /*
+           Very weak shots are easier
+           to save.
+        */
+
+        if(
+            power < 30 &&
+            Math.random() < .35
+        ){
+
+            saved = true;
+
+        }
+
+
         if(saved){
+
+            sound("save");
+
+            if(navigator.vibrate){
+
+                navigator.vibrate(
+                    [50,40,80]
+                );
+
+            }
 
             showMessage(
                 "🧤 SAVED!",
@@ -1210,6 +1494,16 @@ function shoot(){
 
             scoreDisplay.textContent =
             score;
+
+            sound("goal");
+
+            if(navigator.vibrate){
+
+                navigator.vibrate(
+                    [40,50,100]
+                );
+
+            }
 
             showMessage(
                 "⚽ GOAL!",
@@ -1233,7 +1527,7 @@ function shoot(){
 
         }
 
-    },1650);
+    },1700);
 
 }
 
@@ -1244,13 +1538,15 @@ function shoot(){
 
 function showMessage(text,isGoal){
 
-    message.textContent = text;
+    message.textContent =
+    text;
 
     message.className =
     "message show " +
     (isGoal
-        ? "goal-msg"
-        : "save-msg");
+        ? "goalMsg"
+        : "saveMsg");
+
 }
 
 
@@ -1265,12 +1561,16 @@ function nextRound(){
     roundDisplay.textContent =
     round;
 
-    ball.style.left = "50%";
 
-    ball.style.bottom = "160px";
+    ball.style.left =
+    "50%";
+
+    ball.style.bottom =
+    "150px";
 
     ball.style.transform =
     "translateX(-50%)";
+
 
     keeper.className =
     "keeper";
@@ -1279,18 +1579,15 @@ function nextRound(){
     "message";
 
 
-    target = "center";
+    aimX = 50;
+    aimY = 50;
 
 
-    document
-    .querySelectorAll(".target")
-    .forEach(button => {
-        button.classList.remove("active");
-    });
+    aimPoint.style.left =
+    "50%";
 
-    document
-    .getElementById("centerTarget")
-    .classList.add("active");
+    aimPoint.style.top =
+    "50%";
 
 
     power = 60;
@@ -1305,6 +1602,7 @@ function nextRound(){
 
     shootButton.disabled =
     false;
+
 
     startPower();
 
@@ -1322,29 +1620,51 @@ function finishGame(){
     finalScore.textContent =
     score;
 
-    if(score === 5){
 
-        resultInfo.textContent =
-        "🔥 PERFECT! You scored every penalty.";
+    if(score > bestScore){
 
-    }else if(score >= 3){
+        bestScore = score;
 
-        resultInfo.textContent =
-        "⚽ Excellent shootout. You found the net.";
-
-    }else if(score > 0){
-
-        resultInfo.textContent =
-        "👏 You scored, but the goalkeeper made some big saves.";
-
-    }else{
-
-        resultInfo.textContent =
-        "🧤 The goalkeeper dominated this shootout.";
+        localStorage.setItem(
+            "debrynePenaltyBest",
+            bestScore
+        );
 
     }
 
+
+    bestDisplay.textContent =
+    bestScore;
+
+    resultBest.textContent =
+    bestScore;
+
+
+    if(score === 5){
+
+        resultText.textContent =
+        "🔥 PERFECT SHOOTOUT! Every penalty found the net.";
+
+    }else if(score >= 3){
+
+        resultText.textContent =
+        "⚽ Excellent shooting. You beat the goalkeeper.";
+
+    }else if(score > 0){
+
+        resultText.textContent =
+        "👏 You found the net, but the goalkeeper made some saves.";
+
+    }else{
+
+        resultText.textContent =
+        "🧤 The goalkeeper had the final word this time.";
+
+    }
+
+
     result.classList.add("show");
+
 }
 
 
@@ -1359,6 +1679,7 @@ function playAgain(){
     resetGame();
 
     startPower();
+
 }
 
 
@@ -1372,13 +1693,14 @@ function resetGame(){
 
     round = 1;
 
-    target = "center";
-
     power = 60;
 
     powerDirection = 1;
 
     shooting = false;
+
+    aimX = 50;
+    aimY = 50;
 
 
     scoreDisplay.textContent =
@@ -1392,11 +1714,18 @@ function resetGame(){
     "60%";
 
 
+    aimPoint.style.left =
+    "50%";
+
+    aimPoint.style.top =
+    "50%";
+
+
     ball.style.left =
     "50%";
 
     ball.style.bottom =
-    "160px";
+    "150px";
 
     ball.style.transform =
     "translateX(-50%)";
@@ -1411,18 +1740,6 @@ function resetGame(){
 
     shootButton.disabled =
     false;
-
-
-    document
-    .querySelectorAll(".target")
-    .forEach(button => {
-        button.classList.remove("active");
-    });
-
-
-    document
-    .getElementById("centerTarget")
-    .classList.add("active");
 
 }
 
