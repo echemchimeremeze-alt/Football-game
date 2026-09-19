@@ -2,610 +2,722 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>DEBRYNE PENALTY V4</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>DEBRYNE PENALTY V5</title>
 
 <style>
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    -webkit-tap-highlight-color:transparent;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  -webkit-tap-highlight-color:transparent;
 }
 
 body{
-    background:#020604;
-    color:white;
-    font-family:Arial,sans-serif;
-    overflow:hidden;
-    touch-action:none;
+  background:#050505;
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+  overflow:hidden;
+  touch-action:none;
 }
 
 .game{
-    width:100%;
-    max-width:520px;
-    height:100vh;
-    margin:auto;
-    position:relative;
-    overflow:hidden;
-    background:#075d29;
+  width:100%;
+  max-width:520px;
+  height:100vh;
+  margin:auto;
+  position:relative;
+  overflow:hidden;
+  background:#07150e;
 }
 
-/* START */
+/* =========================
+   START SCREEN
+========================= */
 
 .start{
-    position:absolute;
-    inset:0;
-    z-index:200;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:25px;
-
-    background:
-    linear-gradient(rgba(0,0,0,.58),rgba(0,0,0,.88)),
-    radial-gradient(circle at 50% 30%,#168f45,#03160a);
+  position:absolute;
+  inset:0;
+  z-index:500;
+  background:
+    linear-gradient(to bottom,rgba(0,0,0,.25),rgba(0,0,0,.9)),
+    radial-gradient(circle at 50% 20%,#155e38,#020503 75%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 }
 
 .startBox{
-    width:100%;
-    max-width:390px;
+  width:100%;
+  max-width:390px;
+  text-align:center;
 }
 
-.logo{
-    font-size:42px;
-    font-weight:1000;
-    letter-spacing:2px;
+.gameLogo{
+  font-size:40px;
+  font-weight:1000;
+  letter-spacing:-2px;
 }
 
-.logo span{
-    color:#ffd21a;
+.gameLogo span{
+  color:#21e879;
 }
 
-.v4{
-    color:#aaa;
-    font-size:11px;
-    letter-spacing:4px;
-    margin-top:7px;
+.edition{
+  font-size:10px;
+  color:#aaa;
+  letter-spacing:4px;
+  margin-top:6px;
 }
 
-.startBox h2{
-    margin-top:40px;
-    font-size:22px;
+.playerCard{
+  margin:28px auto 20px;
+  width:270px;
+  height:145px;
+  border-radius:18px;
+  overflow:hidden;
+  position:relative;
+  background:#111;
+  border:1px solid rgba(255,255,255,.2);
+  box-shadow:0 15px 40px rgba(0,0,0,.7);
 }
 
-.startBox p{
-    color:#bbb;
-    font-size:13px;
-    line-height:1.6;
-    margin:12px 0 22px;
+.playerCard img{
+  position:absolute;
+  right:0;
+  bottom:0;
+  width:57%;
+  height:135%;
+  object-fit:cover;
+  object-position:center top;
 }
 
-.difficulty{
-    display:flex;
-    gap:7px;
-    margin-bottom:17px;
+.cardShade{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,#07130d 0%,rgba(7,19,13,.9) 40%,transparent 80%);
 }
 
-.diff{
-    flex:1;
-    padding:12px 4px;
-    border-radius:10px;
-    border:1px solid rgba(255,255,255,.25);
-    background:#18241d;
-    color:white;
-    font-weight:bold;
+.cardInfo{
+  position:absolute;
+  left:18px;
+  top:27px;
+  text-align:left;
 }
 
-.diff.active{
-    background:#ffd21a;
-    color:#111;
+.cardInfo small{
+  color:#21e879;
+  font-size:10px;
+  font-weight:bold;
+}
+
+.cardInfo h2{
+  font-size:27px;
+  margin-top:4px;
+}
+
+.cardInfo p{
+  color:#aaa;
+  font-size:11px;
+  margin-top:5px;
+}
+
+.startText{
+  color:#aaa;
+  font-size:13px;
+  line-height:1.5;
+  margin-bottom:20px;
 }
 
 .startBtn{
-    width:100%;
-    border:0;
-    padding:17px;
-    border-radius:13px;
-    background:#ffd21a;
-    color:#111;
-    font-size:18px;
-    font-weight:900;
-    box-shadow:0 5px 0 #9c7b00;
+  width:100%;
+  padding:17px;
+  border:0;
+  border-radius:13px;
+  background:#21e879;
+  color:#031008;
+  font-size:17px;
+  font-weight:1000;
+  box-shadow:0 5px 0 #08783c;
 }
 
-/* HEADER */
+/* =========================
+   GAME HUD
+========================= */
 
-.header{
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:70px;
-    z-index:50;
+.hud{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:74px;
+  z-index:100;
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 
-    padding:0 16px;
+  padding:10px 13px;
 
-    background:rgba(0,0,0,.47);
+  background:linear-gradient(
+    rgba(0,0,0,.9),
+    rgba(0,0,0,.35)
+  );
 }
 
-.brand{
-    font-weight:900;
-    font-size:17px;
+.hudTeam{
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
-.brand span{
-    color:#ffd21a;
+.avatar{
+  width:39px;
+  height:39px;
+  border-radius:50%;
+  overflow:hidden;
+  border:2px solid #21e879;
+  background:#222;
 }
 
-.stats{
-    display:flex;
-    gap:18px;
-    text-align:center;
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
 }
 
-.stat small{
-    display:block;
-    color:#aaa;
-    font-size:8px;
+.teamText small{
+  display:block;
+  color:#999;
+  font-size:8px;
 }
 
-.stat strong{
-    font-size:20px;
+.teamText strong{
+  font-size:12px;
 }
 
-/* STADIUM */
+.scoreBox{
+  text-align:center;
+}
+
+.scoreBox small{
+  display:block;
+  color:#999;
+  font-size:7px;
+}
+
+.score{
+  font-size:24px;
+  font-weight:1000;
+}
+
+.round{
+  text-align:right;
+}
+
+.round small{
+  display:block;
+  color:#999;
+  font-size:7px;
+}
+
+.round strong{
+  font-size:13px;
+}
+
+/* =========================
+   STADIUM
+========================= */
 
 .stadium{
-    position:absolute;
-    inset:0;
-    padding-top:70px;
+  position:absolute;
+  inset:0;
+  background:#06120b;
+}
 
-    background:
-    linear-gradient(
-        to bottom,
-        #26322c 0,
-        #111913 18%,
-        #08732f 40%,
-        #064d23 100%
-    );
+.sky{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:48%;
+  background:
+    radial-gradient(circle at 50% 15%,#526c69,#172421 45%,#050908);
+}
+
+.lights{
+  position:absolute;
+  top:67px;
+  left:0;
+  width:100%;
+  height:75px;
+
+  background:
+    radial-gradient(circle at 10% 30%,rgba(255,255,220,.95) 0 3px,transparent 4px),
+    radial-gradient(circle at 20% 45%,rgba(255,255,220,.9) 0 3px,transparent 4px),
+    radial-gradient(circle at 30% 25%,rgba(255,255,220,.9) 0 3px,transparent 4px),
+    radial-gradient(circle at 40% 42%,rgba(255,255,220,.9) 0 3px,transparent 4px),
+    radial-gradient(circle at 50% 20%,rgba(255,255,220,.95) 0 3px,transparent 4px),
+    radial-gradient(circle at 60% 40%,rgba(255,255,220,.9) 0 3px,transparent 4px),
+    radial-gradient(circle at 70% 25%,rgba(255,255,220,.9) 0 3px,transparent 4px),
+    radial-gradient(circle at 80% 43%,rgba(255,255,220,.9) 0 3px,transparent 4px),
+    radial-gradient(circle at 90% 28%,rgba(255,255,220,.9) 0 3px,transparent 4px);
+  filter:blur(.3px);
 }
 
 .crowd{
-    position:absolute;
-    top:70px;
-    width:100%;
-    height:110px;
+  position:absolute;
+  top:120px;
+  left:0;
+  width:100%;
+  height:155px;
 
-    background:
-    radial-gradient(circle,#aaa 1px,transparent 2px),
-    radial-gradient(circle,#555 1px,transparent 2px),
-    #18211c;
+  background:
+    radial-gradient(circle,rgba(255,255,255,.7) 1px,transparent 2px),
+    radial-gradient(circle,rgba(80,150,120,.7) 1px,transparent 2px),
+    #101a16;
 
-    background-size:13px 13px,17px 17px;
+  background-size:9px 9px,13px 13px;
+  opacity:.9;
 }
 
 .field{
-    position:absolute;
-    top:180px;
-    bottom:0;
-    width:100%;
+  position:absolute;
+  top:260px;
+  left:-15%;
+  width:130%;
+  height:75%;
+  transform:perspective(500px) rotateX(17deg);
+  transform-origin:top;
 
-    background:
+  background:
     repeating-linear-gradient(
-        90deg,
-        rgba(255,255,255,.035) 0,
-        rgba(255,255,255,.035) 45px,
-        transparent 45px,
-        transparent 90px
+      90deg,
+      rgba(255,255,255,.035) 0 45px,
+      transparent 45px 90px
     ),
-    linear-gradient(#08772f,#064d23);
+    linear-gradient(#087334,#034a21);
 }
 
-/* GOAL */
+/* =========================
+   GOAL
+========================= */
 
 .goal{
-    position:absolute;
-    top:108px;
-    left:50%;
-    transform:translateX(-50%);
+  position:absolute;
+  top:180px;
+  left:50%;
+  transform:translateX(-50%);
+  width:340px;
+  height:190px;
+  z-index:15;
 
-    width:315px;
-    height:195px;
+  border:7px solid white;
+  border-bottom:0;
 
-    border:7px solid white;
-    border-bottom:0;
-
-    background:
+  background:
     repeating-linear-gradient(
-        90deg,
-        transparent 0,
-        transparent 23px,
-        rgba(255,255,255,.24) 24px,
-        transparent 25px
+      90deg,
+      transparent 0 22px,
+      rgba(255,255,255,.16) 23px 24px
     ),
     repeating-linear-gradient(
-        0deg,
-        transparent 0,
-        transparent 23px,
-        rgba(255,255,255,.24) 24px,
-        transparent 25px
+      0deg,
+      transparent 0 22px,
+      rgba(255,255,255,.16) 23px 24px
     );
 
-    box-shadow:0 10px 30px rgba(0,0,0,.45);
-
-    z-index:5;
+  box-shadow:
+    0 0 20px rgba(255,255,255,.15),
+    0 20px 35px rgba(0,0,0,.5);
 }
 
-/* TARGET */
+/* =========================
+   GOAL TARGET
+========================= */
 
-.targetArea{
-    position:absolute;
-    top:115px;
-    left:50%;
-    transform:translateX(-50%);
-
-    width:295px;
-    height:175px;
-
-    z-index:10;
-
-    border:1px dashed rgba(255,255,255,.28);
+.target{
+  position:absolute;
+  top:188px;
+  left:50%;
+  transform:translateX(-50%);
+  width:320px;
+  height:180px;
+  z-index:25;
 }
 
-.aimPoint{
-    position:absolute;
-
-    width:30px;
-    height:30px;
-
-    border:3px solid #ffd21a;
-    border-radius:50%;
-
-    transform:translate(-50%,-50%);
-
-    box-shadow:0 0 12px rgba(255,210,26,.8);
-
-    pointer-events:none;
-
-    transition:left .08s,top .08s;
+.crosshair{
+  position:absolute;
+  width:38px;
+  height:38px;
+  border:2px solid #21e879;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  box-shadow:0 0 18px rgba(33,232,121,.8);
+  pointer-events:none;
 }
 
-.aimPoint:after{
-    content:"";
-    position:absolute;
-    width:6px;
-    height:6px;
-    border-radius:50%;
-    background:#ffd21a;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
+.crosshair:before,
+.crosshair:after{
+  content:"";
+  position:absolute;
+  background:#21e879;
 }
 
-/* KEEPER */
+.crosshair:before{
+  width:52px;
+  height:1px;
+  left:-9px;
+  top:17px;
+}
+
+.crosshair:after{
+  height:52px;
+  width:1px;
+  top:-9px;
+  left:17px;
+}
+
+/* =========================
+   GOALKEEPER
+========================= */
 
 .keeper{
-    position:absolute;
+  position:absolute;
+  top:208px;
+  left:50%;
+  width:78px;
+  height:150px;
+  transform:translateX(-50%);
+  z-index:22;
 
-    top:150px;
-    left:50%;
-
-    width:72px;
-    height:125px;
-
-    transform:translateX(-50%);
-
-    z-index:15;
-
-    transition:
-    transform .55s cubic-bezier(.2,.8,.2,1);
+  transition:
+    transform .6s cubic-bezier(.2,.8,.2,1);
 }
 
-.head{
-    width:30px;
-    height:30px;
-    margin:auto;
-    border-radius:50%;
-    background:#8d5524;
+.keeperPhoto{
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:70px;
+  height:125px;
+  overflow:hidden;
+  border-radius:45px 45px 15px 15px;
 }
 
-.body{
-    width:50px;
-    height:57px;
-    margin:auto;
-    background:#1264ce;
-    border-radius:12px 12px 6px 6px;
+.keeperPhoto img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  filter:saturate(1.15);
 }
 
-.arm{
-    position:absolute;
-    top:31px;
-    width:16px;
-    height:55px;
-    background:#1264ce;
-    border-radius:12px;
-}
-
-.arm.left{
-    left:2px;
-    transform:rotate(24deg);
-}
-
-.arm.right{
-    right:2px;
-    transform:rotate(-24deg);
-}
-
-.leg{
-    position:absolute;
-    top:83px;
-    width:17px;
-    height:43px;
-    background:#111;
-    border-radius:10px;
-}
-
-.leg.left{
-    left:18px;
-}
-
-.leg.right{
-    right:18px;
+.keeperBody{
+  position:absolute;
+  top:90px;
+  left:14px;
+  width:50px;
+  height:58px;
+  background:#ce1836;
+  border-radius:13px;
+  border:2px solid rgba(255,255,255,.2);
 }
 
 .keeper.diveLeft{
-    transform:translateX(-135px) rotate(-40deg);
+  transform:translateX(-135px) rotate(-28deg);
 }
 
 .keeper.diveRight{
-    transform:translateX(65px) rotate(40deg);
+  transform:translateX(65px) rotate(28deg);
 }
 
 .keeper.diveCenter{
-    transform:translateX(-50%) scale(1.12);
+  transform:translateX(-50%) scale(1.12);
 }
 
-/* BALL */
+/* =========================
+   BALL
+========================= */
 
 .ball{
-    position:absolute;
-
-    width:50px;
-    height:50px;
-
-    left:50%;
-    bottom:150px;
-
-    transform:translateX(-50%);
-
-    z-index:25;
-
-    transition:
-    left .65s cubic-bezier(.15,.8,.2,1),
-    bottom .65s cubic-bezier(.15,.8,.2,1),
-    transform .65s;
+  position:absolute;
+  left:50%;
+  bottom:125px;
+  width:46px;
+  height:46px;
+  z-index:40;
+  transform:translateX(-50%);
+  transition:
+    left .7s cubic-bezier(.15,.8,.2,1),
+    bottom .7s cubic-bezier(.15,.8,.2,1),
+    transform .7s;
 }
 
 .ball:after{
-    content:"⚽";
-    font-size:50px;
-    line-height:50px;
+  content:"⚽";
+  font-size:46px;
 }
 
-/* INSTRUCTIONS */
+/* =========================
+   PLAYER PANEL
+========================= */
 
-.instruction{
-    position:absolute;
-    top:320px;
-    width:100%;
-    text-align:center;
-    font-size:12px;
-    color:#ddd;
-    z-index:30;
+.playerPanel{
+  position:absolute;
+  bottom:12px;
+  left:12px;
+  z-index:80;
+
+  width:170px;
+  height:67px;
+
+  display:flex;
+  align-items:center;
+  gap:9px;
+
+  padding:7px;
+
+  border-radius:12px;
+
+  background:rgba(0,0,0,.78);
+  border:1px solid rgba(255,255,255,.15);
+  backdrop-filter:blur(8px);
 }
 
-/* POWER */
-
-.power{
-    position:absolute;
-    bottom:175px;
-    left:50%;
-    transform:translateX(-50%);
-    width:250px;
-    z-index:35;
+.playerPanel img{
+  width:52px;
+  height:52px;
+  border-radius:8px;
+  object-fit:cover;
+  object-position:center top;
 }
 
-.powerTitle{
-    text-align:center;
-    font-size:9px;
-    letter-spacing:2px;
-    margin-bottom:5px;
+.playerPanel small{
+  color:#21e879;
+  font-size:8px;
+}
+
+.playerPanel strong{
+  display:block;
+  font-size:13px;
+}
+
+.playerPanel span{
+  color:#999;
+  font-size:9px;
+}
+
+/* =========================
+   POWER
+========================= */
+
+.powerBox{
+  position:absolute;
+  bottom:22px;
+  right:12px;
+  z-index:90;
+  width:150px;
+}
+
+.powerLabel{
+  font-size:8px;
+  color:#aaa;
+  text-align:center;
+  margin-bottom:5px;
+  letter-spacing:2px;
 }
 
 .powerBar{
-    width:100%;
-    height:14px;
-    border-radius:20px;
-    background:#181818;
-    border:1px solid rgba(255,255,255,.4);
-    overflow:hidden;
+  width:100%;
+  height:13px;
+  border-radius:20px;
+  background:#111;
+  border:1px solid rgba(255,255,255,.25);
+  overflow:hidden;
 }
 
 .powerFill{
-    width:60%;
-    height:100%;
-    background:#ffd21a;
+  height:100%;
+  width:60%;
+  background:linear-gradient(
+    90deg,
+    #21e879,
+    #f4dd32,
+    #ff3838
+  );
 }
 
-/* SHOOT */
+/* =========================
+   SHOOT BUTTON
+========================= */
 
 .shoot{
-    position:absolute;
+  position:absolute;
+  bottom:95px;
+  right:25px;
+  z-index:95;
 
-    bottom:30px;
-    left:50%;
-    transform:translateX(-50%);
+  width:105px;
+  height:105px;
 
-    width:220px;
-    padding:16px;
+  border-radius:50%;
 
-    border:0;
-    border-radius:14px;
+  border:5px solid rgba(255,255,255,.7);
 
-    background:#ffd21a;
-    color:#111;
+  background:
+    radial-gradient(circle,#28ed80,#087d40);
 
-    font-size:17px;
-    font-weight:900;
+  color:white;
 
-    z-index:40;
+  font-size:15px;
+  font-weight:1000;
 
-    box-shadow:0 5px 0 #a07d00;
+  box-shadow:
+    0 0 0 5px rgba(33,232,121,.15),
+    0 10px 25px rgba(0,0,0,.6);
+}
+
+.shoot:active{
+  transform:scale(.94);
 }
 
 .shoot:disabled{
-    opacity:.5;
+  opacity:.45;
 }
 
-/* MESSAGE */
+/* =========================
+   MESSAGE
+========================= */
 
 .message{
-    position:absolute;
+  position:absolute;
+  top:410px;
+  left:50%;
+  transform:translateX(-50%) scale(.7);
+  z-index:150;
 
-    top:350px;
-    left:50%;
-    transform:translateX(-50%);
+  font-size:38px;
+  font-weight:1000;
 
-    z-index:70;
+  opacity:0;
+  transition:.25s;
 
-    font-size:34px;
-    font-weight:1000;
-
-    text-shadow:0 4px 10px #000;
-
-    opacity:0;
-
-    transition:.2s;
+  text-shadow:0 4px 15px #000;
 }
 
 .message.show{
-    opacity:1;
+  opacity:1;
+  transform:translateX(-50%) scale(1);
 }
 
 .goalMsg{
-    color:#00ff69;
+  color:#21e879;
 }
 
 .saveMsg{
-    color:#ff4141;
+  color:#ff3c55;
 }
 
-/* RESULT */
+/* =========================
+   RESULT
+========================= */
 
 .result{
-    position:absolute;
-    inset:0;
-    z-index:300;
+  position:absolute;
+  inset:0;
+  z-index:600;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 
-    display:none;
-    align-items:center;
-    justify-content:center;
-
-    padding:25px;
-
-    background:rgba(0,0,0,.88);
-    text-align:center;
+  background:
+    linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.94)),
+    #07140d;
 }
 
 .result.show{
-    display:flex;
+  display:flex;
 }
 
 .resultBox{
-    width:100%;
-    max-width:360px;
-
-    background:#102019;
-    border:1px solid rgba(255,255,255,.16);
-
-    border-radius:22px;
-    padding:30px 25px;
+  width:100%;
+  max-width:360px;
+  text-align:center;
+  background:#0e1b14;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:22px;
+  padding:28px 22px;
 }
 
 .resultBox h1{
-    font-size:27px;
+  font-size:23px;
 }
 
-.finalScore{
-    font-size:58px;
-    font-weight:1000;
-    color:#ffd21a;
-    margin:17px 0;
+.bigScore{
+  font-size:65px;
+  font-weight:1000;
+  color:#21e879;
+  margin:15px 0;
 }
 
-.best{
-    color:#aaa;
-    margin-bottom:9px;
-}
-
-.resultText{
-    color:#bbb;
-    margin-bottom:22px;
+.resultBox p{
+  color:#aaa;
+  font-size:13px;
+  line-height:1.5;
+  margin-bottom:20px;
 }
 
 .again{
-    width:100%;
-    border:0;
-    padding:16px;
-    border-radius:12px;
-    background:#ffd21a;
-    color:#111;
-    font-weight:900;
-    font-size:16px;
+  width:100%;
+  padding:15px;
+  border:0;
+  border-radius:12px;
+  background:#21e879;
+  font-weight:1000;
 }
 
-@media(max-height:650px){
+/* =========================
+   RESPONSIVE
+========================= */
 
-    .goal{
-        top:92px;
-        height:160px;
-    }
+@media(max-height:680px){
 
-    .targetArea{
-        top:99px;
-        height:145px;
-    }
+  .goal{
+    top:145px;
+    height:165px;
+  }
 
-    .keeper{
-        top:130px;
-    }
+  .target{
+    top:153px;
+    height:155px;
+  }
 
-    .aimPoint{
-        width:27px;
-        height:27px;
-    }
+  .keeper{
+    top:170px;
+  }
 
-    .instruction{
-        top:285px;
-    }
+  .message{
+    top:350px;
+  }
 
-    .power{
-        bottom:145px;
-    }
+  .playerPanel{
+    bottom:7px;
+  }
 
-    .shoot{
-        bottom:15px;
-    }
+  .powerBox{
+    bottom:17px;
+  }
 
-    .ball{
-        bottom:130px;
-    }
+  .shoot{
+    bottom:82px;
+  }
+
 }
 </style>
 </head>
@@ -614,230 +726,234 @@ body{
 
 <div class="game">
 
-<!-- START -->
+<!-- ================= START ================= -->
 
-<div class="start" id="startScreen">
+<div class="start" id="start">
 
-    <div class="startBox">
+  <div class="startBox">
 
-        <div class="logo">
-            DEBRYNE <span>PENALTY</span>
-        </div>
+    <div class="gameLogo">
+      DEBRYNE <span>PENALTY</span>
+    </div>
 
-        <div class="v4">
-            V4 • MOBILE SHOOTOUT
-        </div>
+    <div class="edition">
+      V5 • PRO SHOOTOUT
+    </div>
 
-        <h2>⚽ Beat the goalkeeper</h2>
+    <div class="playerCard">
 
-        <p>
-            Drag the target around the goal to aim.
-            Watch the power meter and tap SHOOT.
-        </p>
+      <img
+        src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cole_Palmer_20042025_(2).jpg"
+        alt="Cole Palmer">
 
-        <div class="difficulty">
+      <div class="cardShade"></div>
 
-            <button class="diff"
-                id="easy"
-                onclick="setDifficulty('easy')">
-                EASY
-            </button>
-
-            <button class="diff active"
-                id="normal"
-                onclick="setDifficulty('normal')">
-                NORMAL
-            </button>
-
-            <button class="diff"
-                id="hard"
-                onclick="setDifficulty('hard')">
-                HARD
-            </button>
-
-        </div>
-
-        <button
-            class="startBtn"
-            onclick="startGame()">
-            START SHOOTOUT
-        </button>
+      <div class="cardInfo">
+        <small>CHELSEA FC</small>
+        <h2>PALMER</h2>
+        <p>RIGHT FOOT • PENALTY</p>
+      </div>
 
     </div>
+
+    <div class="startText">
+      Step up from the spot.<br>
+      Choose your target. Control your power.
+      Beat the goalkeeper.
+    </div>
+
+    <button
+      class="startBtn"
+      onclick="startGame()">
+      ⚽ START MATCH
+    </button>
+
+  </div>
 
 </div>
 
 
-<!-- HEADER -->
+<!-- ================= HUD ================= -->
 
-<div class="header">
+<div class="hud">
 
-    <div class="brand">
-        DEBRYNE <span>PENALTY</span>
+  <div class="hudTeam">
+
+    <div class="avatar">
+      <img
+        src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cole_Palmer_20042025_(2).jpg">
     </div>
 
-    <div class="stats">
-
-        <div class="stat">
-            <small>GOALS</small>
-            <strong id="score">0</strong>
-        </div>
-
-        <div class="stat">
-            <small>ROUND</small>
-            <strong>
-                <span id="round">1</span>/5
-            </strong>
-        </div>
-
-        <div class="stat">
-            <small>BEST</small>
-            <strong id="best">0</strong>
-        </div>
-
+    <div class="teamText">
+      <small>TAKER</small>
+      <strong>PALMER</strong>
     </div>
+
+  </div>
+
+
+  <div class="scoreBox">
+    <small>PENALTY SHOOTOUT</small>
+    <div class="score">
+      <span id="score">0</span>
+    </div>
+  </div>
+
+
+  <div class="round">
+    <small>ATTEMPT</small>
+    <strong>
+      <span id="round">1</span>/5
+    </strong>
+  </div>
 
 </div>
 
 
-<!-- STADIUM -->
+<!-- ================= STADIUM ================= -->
 
 <div class="stadium">
 
-    <div class="crowd"></div>
+  <div class="sky"></div>
 
-    <div class="field"></div>
+  <div class="lights"></div>
 
-    <div class="goal"></div>
+  <div class="crowd"></div>
 
-
-    <!-- AIMING AREA -->
-
-    <div
-        class="targetArea"
-        id="targetArea">
-
-        <div
-            class="aimPoint"
-            id="aimPoint">
-        </div>
-
-    </div>
+  <div class="field"></div>
 
 
-    <!-- KEEPER -->
+  <!-- GOAL -->
+
+  <div class="goal"></div>
+
+
+  <!-- AIM -->
+
+  <div
+    class="target"
+    id="target">
 
     <div
-        class="keeper"
-        id="keeper">
+      class="crosshair"
+      id="crosshair">
+    </div>
 
-        <div class="head"></div>
+  </div>
 
-        <div class="body"></div>
 
-        <div class="arm left"></div>
-        <div class="arm right"></div>
+  <!-- KEEPER -->
 
-        <div class="leg left"></div>
-        <div class="leg right"></div>
+  <div
+    class="keeper"
+    id="keeper">
+
+    <div class="keeperPhoto">
+
+      <img
+        src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Weverton_Palmeiras_2025_07_05_Chelsea.jpg"
+        alt="Goalkeeper">
 
     </div>
 
+    <div class="keeperBody"></div>
 
-    <!-- BALL -->
+  </div>
 
-    <div
-        class="ball"
-        id="ball">
+
+  <!-- BALL -->
+
+  <div
+    class="ball"
+    id="ball">
+  </div>
+
+
+  <!-- PLAYER PANEL -->
+
+  <div class="playerPanel">
+
+    <img
+      src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cole_Palmer_20042025_(2).jpg">
+
+    <div>
+      <small>TAKING PENALTY</small>
+      <strong>COLE PALMER</strong>
+      <span>CHELSEA • #10</span>
     </div>
 
+  </div>
 
-    <div
-        class="instruction"
-        id="instruction">
 
-        DRAG THE TARGET • THEN SHOOT
+  <!-- POWER -->
+
+  <div class="powerBox">
+
+    <div class="powerLabel">
+      POWER
+    </div>
+
+    <div class="powerBar">
+
+      <div
+        class="powerFill"
+        id="powerFill">
+      </div>
 
     </div>
 
-
-    <!-- MESSAGE -->
-
-    <div
-        class="message"
-        id="message">
-    </div>
+  </div>
 
 
-    <!-- POWER -->
+  <!-- SHOOT -->
 
-    <div class="power">
+  <button
+    class="shoot"
+    id="shoot"
+    onclick="shoot()">
 
-        <div class="powerTitle">
-            SHOOTING POWER
-        </div>
+    SHOOT
 
-        <div class="powerBar">
-
-            <div
-                class="powerFill"
-                id="powerFill">
-            </div>
-
-        </div>
-
-    </div>
+  </button>
 
 
-    <!-- SHOOT BUTTON -->
+  <!-- MESSAGE -->
 
-    <button
-        class="shoot"
-        id="shootButton"
-        onclick="shoot()">
-
-        ⚡ SHOOT
-
-    </button>
+  <div
+    class="message"
+    id="message">
+  </div>
 
 </div>
 
 
-<!-- RESULT -->
+<!-- ================= RESULT ================= -->
 
 <div
-    class="result"
-    id="result">
+  class="result"
+  id="result">
 
-    <div class="resultBox">
+  <div class="resultBox">
 
-        <h1>
-            🏆 SHOOTOUT COMPLETE
-        </h1>
+    <h1>
+      FULL TIME
+    </h1>
 
-        <div class="finalScore">
-            <span id="finalScore">0</span>/5
-        </div>
-
-        <div class="best">
-            BEST SCORE:
-            <strong id="resultBest">0</strong>/5
-        </div>
-
-        <div
-            class="resultText"
-            id="resultText">
-        </div>
-
-        <button
-            class="again"
-            onclick="playAgain()">
-
-            PLAY AGAIN
-
-        </button>
-
+    <div class="bigScore">
+      <span id="finalScore">0</span>/5
     </div>
+
+    <p id="resultText"></p>
+
+    <button
+      class="again"
+      onclick="playAgain()">
+
+      PLAY AGAIN
+
+    </button>
+
+  </div>
 
 </div>
 
@@ -853,33 +969,25 @@ body{
 let score = 0;
 let round = 1;
 
-let difficulty = "normal";
-
-let shooting = false;
-
 let power = 60;
 let powerDirection = 1;
 
-let powerTimer;
+let shooting = false;
+let dragging = false;
 
 let aimX = 50;
 let aimY = 50;
 
-let dragging = false;
+let powerTimer;
 
+const start =
+document.getElementById("start");
 
-/* =========================
-   ELEMENTS
-========================= */
+const target =
+document.getElementById("target");
 
-const startScreen =
-document.getElementById("startScreen");
-
-const targetArea =
-document.getElementById("targetArea");
-
-const aimPoint =
-document.getElementById("aimPoint");
+const crosshair =
+document.getElementById("crosshair");
 
 const keeper =
 document.getElementById("keeper");
@@ -887,23 +995,20 @@ document.getElementById("keeper");
 const ball =
 document.getElementById("ball");
 
-const message =
-document.getElementById("message");
+const shootButton =
+document.getElementById("shoot");
 
 const powerFill =
 document.getElementById("powerFill");
 
-const shootButton =
-document.getElementById("shootButton");
+const message =
+document.getElementById("message");
 
-const scoreDisplay =
+const scoreEl =
 document.getElementById("score");
 
-const roundDisplay =
+const roundEl =
 document.getElementById("round");
-
-const bestDisplay =
-document.getElementById("best");
 
 const result =
 document.getElementById("result");
@@ -911,42 +1016,8 @@ document.getElementById("result");
 const finalScore =
 document.getElementById("finalScore");
 
-const resultBest =
-document.getElementById("resultBest");
-
 const resultText =
 document.getElementById("resultText");
-
-
-/* =========================
-   BEST SCORE
-========================= */
-
-let bestScore =
-Number(localStorage.getItem("debrynePenaltyBest") || 0);
-
-bestDisplay.textContent =
-bestScore;
-
-
-/* =========================
-   DIFFICULTY
-========================= */
-
-function setDifficulty(level){
-
-    difficulty = level;
-
-    document
-    .querySelectorAll(".diff")
-    .forEach(button => {
-        button.classList.remove("active");
-    });
-
-    document
-    .getElementById(level)
-    .classList.add("active");
-}
 
 
 /* =========================
@@ -955,11 +1026,11 @@ function setDifficulty(level){
 
 function startGame(){
 
-    startScreen.style.display = "none";
+  start.style.display="none";
 
-    resetGame();
+  reset();
 
-    startPower();
+  startPower();
 
 }
 
@@ -970,281 +1041,227 @@ function startGame(){
 
 function startPower(){
 
-    clearInterval(powerTimer);
+  clearInterval(powerTimer);
 
-    powerTimer = setInterval(() => {
+  powerTimer=setInterval(()=>{
 
-        power += powerDirection * 2;
+    power += powerDirection*2;
 
-        if(power >= 100){
+    if(power>=100){
 
-            power = 100;
-            powerDirection = -1;
+      power=100;
+      powerDirection=-1;
 
-        }
+    }
 
-        if(power <= 20){
+    if(power<=20){
 
-            power = 20;
-            powerDirection = 1;
+      power=20;
+      powerDirection=1;
 
-        }
+    }
 
-        powerFill.style.width =
-        power + "%";
+    powerFill.style.width=
+      power+"%";
 
-    },40);
+  },45);
 
 }
 
 
 /* =========================
-   AIM POSITION
+   AIM
 ========================= */
 
 function updateAim(x,y){
 
-    const rect =
-    targetArea.getBoundingClientRect();
+  const rect=
+    target.getBoundingClientRect();
 
-    let localX =
-    ((x - rect.left) / rect.width) * 100;
+  let px=
+    ((x-rect.left)/rect.width)*100;
 
-    let localY =
-    ((y - rect.top) / rect.height) * 100;
+  let py=
+    ((y-rect.top)/rect.height)*100;
 
+  px=Math.max(5,Math.min(95,px));
+  py=Math.max(5,Math.min(95,py));
 
-    /*
-       Keep the target inside
-       the goal.
-    */
+  aimX=px;
+  aimY=py;
 
-    localX =
-    Math.max(7,Math.min(93,localX));
+  crosshair.style.left=
+    px+"%";
 
-    localY =
-    Math.max(8,Math.min(92,localY));
+  crosshair.style.top=
+    py+"%";
 
-
-    aimX = localX;
-    aimY = localY;
-
-
-    aimPoint.style.left =
-    localX + "%";
-
-    aimPoint.style.top =
-    localY + "%";
 }
 
 
 /* =========================
-   TOUCH AIMING
+   TOUCH
 ========================= */
 
-targetArea.addEventListener(
-    "touchstart",
-    function(e){
+target.addEventListener(
+  "touchstart",
+  e=>{
 
-        if(shooting) return;
+    if(shooting)return;
 
-        dragging = true;
+    dragging=true;
 
-        const touch =
-        e.touches[0];
+    const t=e.touches[0];
 
-        updateAim(
-            touch.clientX,
-            touch.clientY
-        );
+    updateAim(
+      t.clientX,
+      t.clientY
+    );
 
-    },
-    {passive:false}
+  },
+  {passive:false}
 );
 
 
-targetArea.addEventListener(
-    "touchmove",
-    function(e){
+target.addEventListener(
+  "touchmove",
+  e=>{
 
-        if(!dragging || shooting)
-            return;
+    if(!dragging || shooting)return;
 
-        e.preventDefault();
+    e.preventDefault();
 
-        const touch =
-        e.touches[0];
+    const t=e.touches[0];
 
-        updateAim(
-            touch.clientX,
-            touch.clientY
-        );
+    updateAim(
+      t.clientX,
+      t.clientY
+    );
 
-    },
-    {passive:false}
+  },
+  {passive:false}
 );
 
 
-targetArea.addEventListener(
-    "touchend",
-    function(){
-
-        dragging = false;
-
-    }
+target.addEventListener(
+  "touchend",
+  ()=>{
+    dragging=false;
+  }
 );
 
 
 /* =========================
-   MOUSE AIMING
+   MOUSE
 ========================= */
 
-targetArea.addEventListener(
-    "mousedown",
-    function(e){
+target.addEventListener(
+  "mousedown",
+  e=>{
 
-        if(shooting) return;
+    if(shooting)return;
 
-        dragging = true;
+    dragging=true;
 
-        updateAim(
-            e.clientX,
-            e.clientY
-        );
+    updateAim(
+      e.clientX,
+      e.clientY
+    );
 
-    }
+  }
 );
 
+
 document.addEventListener(
-    "mousemove",
-    function(e){
+  "mousemove",
+  e=>{
 
-        if(!dragging || shooting)
-            return;
+    if(!dragging || shooting)return;
 
-        updateAim(
-            e.clientX,
-            e.clientY
-        );
+    updateAim(
+      e.clientX,
+      e.clientY
+    );
 
-    }
+  }
 );
 
+
 document.addEventListener(
-    "mouseup",
-    function(){
-
-        dragging = false;
-
-    }
+  "mouseup",
+  ()=>{
+    dragging=false;
+  }
 );
 
 
 /* =========================
-   SOUND ENGINE
+   SOUND
 ========================= */
 
-let audioContext;
-
-function audio(){
-
-    if(!audioContext){
-
-        audioContext =
-        new (window.AudioContext ||
-        window.webkitAudioContext)();
-
-    }
-
-    if(audioContext.state === "suspended"){
-
-        audioContext.resume();
-
-    }
-}
-
+let audioCtx;
 
 function sound(type){
 
-    try{
+  try{
 
-        audio();
+    if(!audioCtx){
 
-        const oscillator =
-        audioContext.createOscillator();
-
-        const gain =
-        audioContext.createGain();
-
-        oscillator.connect(gain);
-
-        gain.connect(
-            audioContext.destination
-        );
-
-
-        if(type === "kick"){
-
-            oscillator.frequency.value = 100;
-
-            gain.gain.setValueAtTime(
-                .18,
-                audioContext.currentTime
-            );
-
-            gain.gain.exponentialRampToValueAtTime(
-                .01,
-                audioContext.currentTime + .18
-            );
-
-        }
-
-
-        if(type === "goal"){
-
-            oscillator.frequency.value = 520;
-
-            gain.gain.setValueAtTime(
-                .18,
-                audioContext.currentTime
-            );
-
-            gain.gain.exponentialRampToValueAtTime(
-                .01,
-                audioContext.currentTime + .5
-            );
-
-        }
-
-
-        if(type === "save"){
-
-            oscillator.frequency.value = 120;
-
-            gain.gain.setValueAtTime(
-                .18,
-                audioContext.currentTime
-            );
-
-            gain.gain.exponentialRampToValueAtTime(
-                .01,
-                audioContext.currentTime + .35
-            );
-
-        }
-
-
-        oscillator.start();
-
-        oscillator.stop(
-            audioContext.currentTime + .55
-        );
-
-    }catch(e){
-
-        /* Sound is optional */
+      audioCtx=
+        new(
+          window.AudioContext ||
+          window.webkitAudioContext
+        )();
 
     }
+
+    const osc=
+      audioCtx.createOscillator();
+
+    const gain=
+      audioCtx.createGain();
+
+    osc.connect(gain);
+    gain.connect(
+      audioCtx.destination
+    );
+
+    if(type==="kick"){
+
+      osc.frequency.value=110;
+
+    }
+
+    if(type==="goal"){
+
+      osc.frequency.value=650;
+
+    }
+
+    if(type==="save"){
+
+      osc.frequency.value=90;
+
+    }
+
+    gain.gain.setValueAtTime(
+      .18,
+      audioCtx.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      .01,
+      audioCtx.currentTime+.45
+    );
+
+    osc.start();
+
+    osc.stop(
+      audioCtx.currentTime+.45
+    );
+
+  }catch(e){}
+
 }
 
 
@@ -1254,280 +1271,227 @@ function sound(type){
 
 function shoot(){
 
-    if(shooting) return;
+  if(shooting)return;
 
-    shooting = true;
+  shooting=true;
 
-    dragging = false;
+  dragging=false;
 
-    clearInterval(powerTimer);
+  clearInterval(powerTimer);
 
-    shootButton.disabled = true;
+  shootButton.disabled=true;
 
-    sound("kick");
+  sound("kick");
 
 
-    if(navigator.vibrate){
+  if(navigator.vibrate){
 
-        navigator.vibrate(30);
+    navigator.vibrate(30);
+
+  }
+
+
+  let direction;
+
+  if(aimX<35){
+
+    direction="left";
+
+  }else if(aimX>65){
+
+    direction="right";
+
+  }else{
+
+    direction="center";
+
+  }
+
+
+  /*
+    Goalkeeper AI
+  */
+
+  const choices=[
+    "left",
+    "center",
+    "right"
+  ];
+
+  let keeperDirection=
+    choices[
+      Math.floor(
+        Math.random()*3
+      )
+    ];
+
+
+  /*
+    Keeper sometimes predicts
+    the player's target.
+  */
+
+  if(Math.random()<.42){
+
+    keeperDirection=
+      direction;
+
+  }
+
+
+  keeper.className="keeper";
+
+
+  if(keeperDirection==="left"){
+
+    keeper.classList.add(
+      "diveLeft"
+    );
+
+  }
+
+  if(keeperDirection==="right"){
+
+    keeper.classList.add(
+      "diveRight"
+    );
+
+  }
+
+  if(keeperDirection==="center"){
+
+    keeper.classList.add(
+      "diveCenter"
+    );
+
+  }
+
+
+  /*
+    Move ball toward
+    selected target.
+  */
+
+  const finalLeft=
+    50+(aimX-50)*.75;
+
+  const finalBottom=
+    300+(100-aimY)*1.25;
+
+
+  ball.style.left=
+    finalLeft+"%";
+
+  ball.style.bottom=
+    finalBottom+"px";
+
+
+  ball.style.transform=
+    "translateX(-50%) rotate(720deg) scale("+
+    (.55+power/500)+")";
+
+
+  setTimeout(()=>{
+
+    let saved=
+      direction===keeperDirection;
+
+
+    /*
+      Powerful corner shots
+      can beat the keeper.
+    */
+
+    const corner=
+      aimX<20 ||
+      aimX>80 ||
+      aimY<18;
+
+
+    if(
+      saved &&
+      corner &&
+      power>75 &&
+      Math.random()<.6
+    ){
+
+      saved=false;
 
     }
 
 
     /*
-       Convert aim position
-       into a direction.
+      Weak shots are easier
+      to save.
     */
 
-    let direction;
+    if(
+      power<35 &&
+      Math.random()<.35
+    ){
 
-    if(aimX < 35){
+      saved=true;
 
-        direction = "left";
+    }
 
-    }else if(aimX > 65){
 
-        direction = "right";
+    if(saved){
+
+      sound("save");
+
+      showMessage(
+        "SAVED!",
+        false
+      );
+
+      if(navigator.vibrate){
+
+        navigator.vibrate(
+          [50,40,80]
+        );
+
+      }
 
     }else{
 
-        direction = "center";
+      score++;
+
+      scoreEl.textContent=
+        score;
+
+      sound("goal");
+
+      showMessage(
+        "GOAL!",
+        true
+      );
+
+      if(navigator.vibrate){
+
+        navigator.vibrate(
+          [40,40,100]
+        );
+
+      }
 
     }
 
-
-    /*
-       Goalkeeper AI
-    */
-
-    const directions =
-    ["left","center","right"];
-
-    let keeperDirection;
+  },700);
 
 
-    if(difficulty === "easy"){
+  setTimeout(()=>{
 
-        if(Math.random() < .35){
+    if(round>=5){
 
-            keeperDirection =
-            directions[
-                Math.floor(
-                    Math.random()*3
-                )
-            ];
+      finish();
 
-        }else{
+    }else{
 
-            keeperDirection =
-            directions[
-                Math.floor(
-                    Math.random()*3
-                )
-            ];
-
-        }
+      nextRound();
 
     }
 
-
-    if(difficulty === "normal"){
-
-        keeperDirection =
-        directions[
-            Math.floor(
-                Math.random()*3
-            )
-        ];
-
-    }
-
-
-    if(difficulty === "hard"){
-
-        if(Math.random() < .48){
-
-            keeperDirection =
-            direction;
-
-        }else{
-
-            keeperDirection =
-            directions[
-                Math.floor(
-                    Math.random()*3
-                )
-            ];
-
-        }
-
-    }
-
-
-    /* Keeper animation */
-
-    keeper.className = "keeper";
-
-    if(keeperDirection === "left"){
-
-        keeper.classList.add("diveLeft");
-
-    }
-
-    if(keeperDirection === "right"){
-
-        keeper.classList.add("diveRight");
-
-    }
-
-    if(keeperDirection === "center"){
-
-        keeper.classList.add("diveCenter");
-
-    }
-
-
-    /*
-       Ball target.
-
-       The ball uses the actual
-       position of the aim marker.
-    */
-
-    const targetLeft =
-    50 + (aimX - 50) * .72;
-
-    const targetBottom =
-    300 + (100 - aimY) * 1.25;
-
-
-    ball.style.left =
-    targetLeft + "%";
-
-    ball.style.bottom =
-    targetBottom + "px";
-
-
-    /*
-       Power changes the scale.
-    */
-
-    const ballScale =
-    .48 + (power / 100) * .22;
-
-
-    ball.style.transform =
-    "translateX(-50%) scale(" +
-    ballScale +
-    ") rotate(720deg)";
-
-
-    setTimeout(() => {
-
-        /*
-           Distance from the
-           goalkeeper's likely zone.
-        */
-
-        let saved =
-        direction === keeperDirection;
-
-
-        /*
-           Very accurate corner shots
-           are harder to save.
-        */
-
-        const cornerShot =
-        aimX < 20 ||
-        aimX > 80 ||
-        aimY < 20;
-
-
-        if(
-            saved &&
-            cornerShot &&
-            power >= 70 &&
-            Math.random() < .55
-        ){
-
-            saved = false;
-
-        }
-
-
-        /*
-           Very weak shots are easier
-           to save.
-        */
-
-        if(
-            power < 30 &&
-            Math.random() < .35
-        ){
-
-            saved = true;
-
-        }
-
-
-        if(saved){
-
-            sound("save");
-
-            if(navigator.vibrate){
-
-                navigator.vibrate(
-                    [50,40,80]
-                );
-
-            }
-
-            showMessage(
-                "🧤 SAVED!",
-                false
-            );
-
-        }else{
-
-            score++;
-
-            scoreDisplay.textContent =
-            score;
-
-            sound("goal");
-
-            if(navigator.vibrate){
-
-                navigator.vibrate(
-                    [40,50,100]
-                );
-
-            }
-
-            showMessage(
-                "⚽ GOAL!",
-                true
-            );
-
-        }
-
-    },650);
-
-
-    setTimeout(() => {
-
-        if(round >= 5){
-
-            finishGame();
-
-        }else{
-
-            nextRound();
-
-        }
-
-    },1700);
+  },1800);
 
 }
 
@@ -1536,16 +1500,23 @@ function shoot(){
    MESSAGE
 ========================= */
 
-function showMessage(text,isGoal){
+function showMessage(
+  text,
+  goal
+){
 
-    message.textContent =
-    text;
+  message.textContent=
+    goal
+      ? "⚽ "+text
+      : "🧤 "+text;
 
-    message.className =
-    "message show " +
-    (isGoal
-        ? "goalMsg"
-        : "saveMsg");
+  message.className=
+    "message show "+
+    (
+      goal
+      ? "goalMsg"
+      : "saveMsg"
+    );
 
 }
 
@@ -1556,55 +1527,54 @@ function showMessage(text,isGoal){
 
 function nextRound(){
 
-    round++;
+  round++;
 
-    roundDisplay.textContent =
+  roundEl.textContent=
     round;
 
-
-    ball.style.left =
+  ball.style.left=
     "50%";
 
-    ball.style.bottom =
-    "150px";
+  ball.style.bottom=
+    "125px";
 
-    ball.style.transform =
+  ball.style.transform=
     "translateX(-50%)";
 
 
-    keeper.className =
+  keeper.className=
     "keeper";
 
-    message.className =
+
+  message.className=
     "message";
 
 
-    aimX = 50;
-    aimY = 50;
+  aimX=50;
+  aimY=50;
 
 
-    aimPoint.style.left =
+  crosshair.style.left=
     "50%";
 
-    aimPoint.style.top =
+  crosshair.style.top=
     "50%";
 
 
-    power = 60;
+  power=60;
+  powerDirection=1;
 
-    powerDirection = 1;
-
-    powerFill.style.width =
+  powerFill.style.width=
     "60%";
 
 
-    shooting = false;
+  shooting=false;
 
-    shootButton.disabled =
+  shootButton.disabled=
     false;
 
 
-    startPower();
+  startPower();
 
 }
 
@@ -1613,57 +1583,38 @@ function nextRound(){
    FINISH
 ========================= */
 
-function finishGame(){
+function finish(){
 
-    clearInterval(powerTimer);
+  clearInterval(powerTimer);
 
-    finalScore.textContent =
+  finalScore.textContent=
     score;
 
 
-    if(score > bestScore){
+  if(score===5){
 
-        bestScore = score;
+    resultText.textContent=
+      "PERFECT SHOOTOUT. Five penalties. Five goals.";
 
-        localStorage.setItem(
-            "debrynePenaltyBest",
-            bestScore
-        );
+  }else if(score>=3){
 
-    }
+    resultText.textContent=
+      "A strong penalty performance. The goalkeeper had a difficult night.";
 
+  }else if(score>0){
 
-    bestDisplay.textContent =
-    bestScore;
+    resultText.textContent=
+      "You found the net, but the goalkeeper made some important saves.";
 
-    resultBest.textContent =
-    bestScore;
+  }else{
 
+    resultText.textContent=
+      "The goalkeeper wins this shootout. Step up again.";
 
-    if(score === 5){
-
-        resultText.textContent =
-        "🔥 PERFECT SHOOTOUT! Every penalty found the net.";
-
-    }else if(score >= 3){
-
-        resultText.textContent =
-        "⚽ Excellent shooting. You beat the goalkeeper.";
-
-    }else if(score > 0){
-
-        resultText.textContent =
-        "👏 You found the net, but the goalkeeper made some saves.";
-
-    }else{
-
-        resultText.textContent =
-        "🧤 The goalkeeper had the final word this time.";
-
-    }
+  }
 
 
-    result.classList.add("show");
+  result.classList.add("show");
 
 }
 
@@ -1674,11 +1625,13 @@ function finishGame(){
 
 function playAgain(){
 
-    result.classList.remove("show");
+  result.classList.remove(
+    "show"
+  );
 
-    resetGame();
+  reset();
 
-    startPower();
+  startPower();
 
 }
 
@@ -1687,58 +1640,57 @@ function playAgain(){
    RESET
 ========================= */
 
-function resetGame(){
+function reset(){
 
-    score = 0;
+  score=0;
+  round=1;
 
-    round = 1;
+  power=60;
+  powerDirection=1;
 
-    power = 60;
+  shooting=false;
 
-    powerDirection = 1;
-
-    shooting = false;
-
-    aimX = 50;
-    aimY = 50;
-
-
-    scoreDisplay.textContent =
+  scoreEl.textContent=
     "0";
 
-    roundDisplay.textContent =
+  roundEl.textContent=
     "1";
 
 
-    powerFill.style.width =
+  powerFill.style.width=
     "60%";
 
 
-    aimPoint.style.left =
+  ball.style.left=
     "50%";
 
-    aimPoint.style.top =
-    "50%";
+  ball.style.bottom=
+    "125px";
 
-
-    ball.style.left =
-    "50%";
-
-    ball.style.bottom =
-    "150px";
-
-    ball.style.transform =
+  ball.style.transform=
     "translateX(-50%)";
 
 
-    keeper.className =
+  keeper.className=
     "keeper";
 
-    message.className =
+
+  message.className=
     "message";
 
 
-    shootButton.disabled =
+  aimX=50;
+  aimY=50;
+
+
+  crosshair.style.left=
+    "50%";
+
+  crosshair.style.top=
+    "50%";
+
+
+  shootButton.disabled=
     false;
 
 }
