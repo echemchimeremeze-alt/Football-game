@@ -3,219 +3,1290 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DeBryne Penalty</title>
+
+<title>DEBRYNE PENALTY</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    -webkit-tap-highlight-color: transparent;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #071b12;
-    color: white;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#050b08;
+    color:white;
+    overflow:hidden;
 }
 
-.game {
-    width: 100%;
-    max-width: 500px;
-    min-height: 100vh;
-    background: linear-gradient(#08752f, #064d23);
-    position: relative;
-    overflow: hidden;
+.game{
+    width:100%;
+    max-width:520px;
+    height:100vh;
+    margin:auto;
+    position:relative;
+    overflow:hidden;
+    background:#08742e;
 }
 
-/* TOP BAR */
-.top {
-    height: 75px;
-    background: rgba(0,0,0,0.35);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 18px;
-}
+/* =========================
+   START SCREEN
+========================= */
 
-.logo {
-    font-size: 20px;
-    font-weight: 900;
-    letter-spacing: 1px;
-}
+.start-screen{
+    position:absolute;
+    inset:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:25px;
 
-.logo span {
-    color: #ffd700;
-}
-
-.score-box {
-    text-align: right;
-}
-
-.score-label {
-    font-size: 11px;
-    opacity: 0.7;
-}
-
-.score {
-    font-size: 25px;
-    font-weight: bold;
-}
-
-/* FIELD */
-.field {
-    position: relative;
-    height: calc(100vh - 75px);
-    min-height: 600px;
-    overflow: hidden;
     background:
-        repeating-linear-gradient(
-            90deg,
-            rgba(255,255,255,0.025) 0px,
-            rgba(255,255,255,0.025) 45px,
-            transparent 45px,
-            transparent 90px
+        linear-gradient(rgba(0,0,0,.62),rgba(0,0,0,.78)),
+        radial-gradient(circle at 50% 30%,#159447,#021c0d);
+}
+
+.start-content{
+    width:100%;
+    max-width:390px;
+}
+
+.logo{
+    font-size:43px;
+    font-weight:1000;
+    letter-spacing:2px;
+    margin-bottom:5px;
+}
+
+.logo span{
+    color:#ffd21a;
+}
+
+.subtitle{
+    color:#d9d9d9;
+    font-size:14px;
+    letter-spacing:4px;
+    margin-bottom:45px;
+}
+
+.start-title{
+    font-size:20px;
+    margin-bottom:20px;
+}
+
+.start-button{
+    width:100%;
+    border:0;
+    border-radius:15px;
+    padding:18px;
+    background:#ffd21a;
+    color:#111;
+    font-size:18px;
+    font-weight:900;
+    box-shadow:0 6px 0 #a78300;
+}
+
+.start-button:active{
+    transform:translateY(5px);
+    box-shadow:0 1px 0 #a78300;
+}
+
+.rules{
+    margin-top:25px;
+    color:#bbb;
+    font-size:12px;
+    line-height:1.7;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:72px;
+    z-index:20;
+
+    background:rgba(0,0,0,.45);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 17px;
+}
+
+.brand{
+    font-size:18px;
+    font-weight:900;
+}
+
+.brand span{
+    color:#ffd21a;
+}
+
+.score-area{
+    display:flex;
+    gap:20px;
+    text-align:center;
+}
+
+.stat small{
+    display:block;
+    color:#aaa;
+    font-size:9px;
+    letter-spacing:1px;
+}
+
+.stat strong{
+    font-size:21px;
+}
+
+/* =========================
+   STADIUM
+========================= */
+
+.stadium{
+    position:absolute;
+    inset:0;
+    padding-top:72px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #202d26 0%,
+            #101914 15%,
+            #08762f 38%,
+            #075e28 100%
         );
 }
 
-/* CROWD */
-.stadium-light {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    background: rgba(255,255,255,0.15);
-    border-radius: 50%;
-    filter: blur(20px);
-    top: 15px;
+/* crowd */
+
+.crowd{
+    position:absolute;
+    top:72px;
+    width:100%;
+    height:105px;
+
+    background:
+        radial-gradient(circle,#777 1px,transparent 2px),
+        radial-gradient(circle,#555 1px,transparent 2px),
+        #18201c;
+
+    background-size:13px 13px,17px 17px;
 }
 
-.light1 { left: 20px; }
-.light2 { right: 20px; }
+/* field stripes */
 
-/* GOAL */
-.goal {
-    position: absolute;
-    top: 55px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 310px;
-    height: 190px;
-    border: 8px solid white;
-    border-bottom: 0;
+.field{
+    position:absolute;
+    top:175px;
+    bottom:0;
+    width:100%;
+
     background:
         repeating-linear-gradient(
             90deg,
-            transparent 0px,
-            transparent 25px,
-            rgba(255,255,255,0.3) 26px,
-            transparent 27px
+            rgba(255,255,255,.035) 0,
+            rgba(255,255,255,.035) 45px,
+            transparent 45px,
+            transparent 90px
+        ),
+        linear-gradient(#08772f,#064d23);
+}
+
+/* =========================
+   GOAL
+========================= */
+
+.goal{
+    position:absolute;
+
+    top:125px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:310px;
+    height:190px;
+
+    border:7px solid white;
+    border-bottom:0;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            transparent 0,
+            transparent 24px,
+            rgba(255,255,255,.25) 25px,
+            transparent 26px
         ),
         repeating-linear-gradient(
             0deg,
-            transparent 0px,
-            transparent 25px,
-            rgba(255,255,255,0.3) 26px,
-            transparent 27px
+            transparent 0,
+            transparent 24px,
+            rgba(255,255,255,.25) 25px,
+            transparent 26px
         );
+
+    box-shadow:
+        0 10px 20px rgba(0,0,0,.45);
+
+    z-index:3;
 }
 
-/* GOAL NET BACK */
-.goal::after {
-    content: "";
-    position: absolute;
-    left: 20px;
-    right: 20px;
-    bottom: -35px;
-    height: 35px;
-    border-left: 5px solid white;
-    border-right: 5px solid white;
-    transform: skewX(-15deg);
+/* goal posts */
+
+.goal:before,
+.goal:after{
+    content:"";
+    position:absolute;
+    bottom:-8px;
+    width:7px;
+    height:45px;
+    background:white;
 }
 
-/* GOALKEEPER */
-.keeper {
-    position: absolute;
-    top: 145px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 58px;
-    height: 95px;
-    z-index: 5;
-    transition: 0.45s ease;
+.goal:before{
+    left:-7px;
 }
 
-.head {
-    width: 28px;
-    height: 28px;
-    background: #8d5524;
-    border-radius: 50%;
-    margin: auto;
+.goal:after{
+    right:-7px;
 }
 
-.body {
-    width: 45px;
-    height: 50px;
-    background: #e8b923;
-    border-radius: 12px 12px 5px 5px;
-    margin: -1px auto 0;
+/* =========================
+   GOALKEEPER
+========================= */
+
+.keeper{
+    position:absolute;
+
+    top:165px;
+    left:50%;
+
+    width:70px;
+    height:120px;
+
+    transform:translateX(-50%);
+
+    z-index:8;
+
+    transition:
+        transform .55s cubic-bezier(.2,.8,.2,1);
 }
 
-.arm {
-    position: absolute;
-    width: 15px;
-    height: 48px;
-    background: #e8b923;
-    border-radius: 10px;
-    top: 28px;
+.keeper-head{
+    width:30px;
+    height:30px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#8d5524;
+    border:2px solid #633b18;
 }
 
-.arm.left {
-    left: 1px;
-    transform: rotate(25deg);
+.keeper-body{
+    width:48px;
+    height:55px;
+
+    margin:auto;
+
+    background:#1769d1;
+
+    border-radius:12px 12px 5px 5px;
 }
 
-.arm.right {
-    right: 1px;
-    transform: rotate(-25deg);
+.keeper-arm{
+    position:absolute;
+
+    top:32px;
+
+    width:16px;
+    height:55px;
+
+    background:#1769d1;
+
+    border-radius:12px;
 }
 
-.leg {
-    position: absolute;
-    width: 15px;
-    height: 42px;
-    background: #111;
-    top: 72px;
-    border-radius: 8px;
+.keeper-arm.left{
+    left:3px;
+    transform:rotate(25deg);
 }
 
-.leg.left { left: 14px; }
-.leg.right { right: 14px; }
-
-/* KEEPER DIVE */
-.keeper.left-dive {
-    transform: translateX(-125px) rotate(-35deg);
+.keeper-arm.right{
+    right:3px;
+    transform:rotate(-25deg);
 }
 
-.keeper.right-dive {
-    transform: translateX(70px) rotate(35deg);
+.keeper-leg{
+    position:absolute;
+
+    top:82px;
+
+    width:17px;
+    height:42px;
+
+    background:#111;
+
+    border-radius:10px;
 }
 
-.keeper.center-save {
-    transform: translateX(-50%) scale(1.05);
+.keeper-leg.left{
+    left:18px;
 }
 
-/* BALL */
-.ball {
-    position: absolute;
-    bottom: 150px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 45px;
-    height: 45px;
-    background: white;
-    border-radius: 50
+.keeper-leg.right{
+    right:18px;
+}
+
+/* keeper movement */
+
+.dive-left{
+    transform:translateX(-135px) rotate(-35deg);
+}
+
+.dive-right{
+    transform:translateX(65px) rotate(35deg);
+}
+
+.dive-center{
+    transform:translateX(-50%) scale(1.08);
+}
+
+/* =========================
+   BALL
+========================= */
+
+.ball{
+    position:absolute;
+
+    width:48px;
+    height:48px;
+
+    left:50%;
+    bottom:170px;
+
+    transform:translateX(-50%);
+
+    z-index:12;
+
+    transition:
+        left .6s cubic-bezier(.2,.8,.2,1),
+        bottom .6s cubic-bezier(.2,.8,.2,1),
+        transform .6s;
+}
+
+.ball:after{
+    content:"⚽";
+
+    position:absolute;
+
+    font-size:48px;
+
+    line-height:48px;
+}
+
+/* =========================
+   AIM INDICATOR
+========================= */
+
+.aim{
+    position:absolute;
+
+    left:50%;
+    bottom:165px;
+
+    transform:translateX(-50%);
+
+    width:260px;
+    height:75px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    z-index:10;
+}
+
+.target{
+    width:62px;
+    height:62px;
+
+    border:2px solid rgba(255,255,255,.65);
+    border-radius:50%;
+
+    background:rgba(0,0,0,.15);
+
+    color:white;
+
+    font-size:24px;
+}
+
+.target.active{
+    background:rgba(255,210,26,.9);
+    color:#111;
+    border-color:white;
+    transform:scale(1.08);
+}
+
+/* =========================
+   POWER
+========================= */
+
+.power-area{
+    position:absolute;
+
+    bottom:250px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:230px;
+
+    text-align:center;
+
+    z-index:20;
+}
+
+.power-label{
+    font-size:10px;
+    letter-spacing:2px;
+    margin-bottom:7px;
+}
+
+.power-bar{
+    height:12px;
+
+    width:100%;
+
+    border-radius:20px;
+
+    background:#222;
+
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,.3);
+}
+
+.power-fill{
+    height:100%;
+    width:60%;
+
+    background:#ffd21a;
+
+    transition:width .08s linear;
+}
+
+/* =========================
+   SHOOT BUTTON
+========================= */
+
+.shoot-button{
+    position:absolute;
+
+    bottom:35px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:220px;
+
+    border:0;
+
+    border-radius:15px;
+
+    padding:17px;
+
+    background:#ffd21a;
+    color:#111;
+
+    font-size:17px;
+    font-weight:900;
+
+    z-index:30;
+
+    box-shadow:0 5px 0 #a78300;
+}
+
+.shoot-button:active{
+    transform:translateX(-50%) translateY(4px);
+    box-shadow:0 1px 0 #a78300;
+}
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message{
+    position:absolute;
+
+    top:335px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:40;
+
+    font-size:31px;
+    font-weight:1000;
+
+    text-shadow:0 4px 8px rgba(0,0,0,.7);
+
+    opacity:0;
+
+    transition:.25s;
+}
+
+.message.show{
+    opacity:1;
+}
+
+.goal-message{
+    color:#00ff6a;
+}
+
+.save-message{
+    color:#ff4747;
+}
+
+/* =========================
+   RESULT SCREEN
+========================= */
+
+.result{
+    position:absolute;
+
+    inset:0;
+
+    z-index:100;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:25px;
+
+    background:rgba(0,0,0,.82);
+
+    text-align:center;
+}
+
+.result.show{
+    display:flex;
+}
+
+.result-box{
+    width:100%;
+    max-width:350px;
+
+    padding:32px 25px;
+
+    border-radius:22px;
+
+    background:#102019;
+
+    border:1px solid rgba(255,255,255,.15);
+}
+
+.result-box h1{
+    font-size:31px;
+    margin-bottom:10px;
+}
+
+.final-score{
+    font-size:55px;
+    font-weight:1000;
+    color:#ffd21a;
+    margin:15px 0;
+}
+
+.result-text{
+    color:#bbb;
+    margin-bottom:25px;
+}
+
+.play-again{
+    width:100%;
+
+    border:0;
+
+    padding:16px;
+
+    border-radius:12px;
+
+    background:#ffd21a;
+    color:#111;
+
+    font-weight:900;
+    font-size:16px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-height:650px){
+
+    .goal{
+        top:105px;
+        height:165px;
+    }
+
+    .keeper{
+        top:140px;
+    }
+
+    .power-area{
+        bottom:225px;
+    }
+
+    .aim{
+        bottom:145px;
+    }
+
+    .ball{
+        bottom:150px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="game">
+
+    <!-- START SCREEN -->
+
+    <div class="start-screen" id="startScreen">
+
+        <div class="start-content">
+
+            <div class="logo">
+                DEBRYNE <span>PENALTY</span>
+            </div>
+
+            <div class="subtitle">
+                PENALTY SHOOTOUT
+            </div>
+
+            <div class="start-title">
+                ⚽ Can you beat the goalkeeper?
+            </div>
+
+            <button class="start-button" onclick="startGame()">
+                START GAME
+            </button>
+
+            <div class="rules">
+                5 penalties • Choose your target •
+                Control your power • Score more goals
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="brand">
+            DEBRYNE <span>PENALTY</span>
+        </div>
+
+        <div class="score-area">
+
+            <div class="stat">
+                <small>GOALS</small>
+                <strong id="score">0</strong>
+            </div>
+
+            <div class="stat">
+                <small>ROUND</small>
+                <strong>
+                    <span id="round">1</span>/5
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- STADIUM -->
+
+    <div class="stadium">
+
+        <div class="crowd"></div>
+
+        <div class="field"></div>
+
+        <!-- GOAL -->
+
+        <div class="goal"></div>
+
+
+        <!-- GOALKEEPER -->
+
+        <div class="keeper" id="keeper">
+
+            <div class="keeper-head"></div>
+
+            <div class="keeper-body"></div>
+
+            <div class="keeper-arm left"></div>
+            <div class="keeper-arm right"></div>
+
+            <div class="keeper-leg left"></div>
+            <div class="keeper-leg right"></div>
+
+        </div>
+
+
+        <!-- BALL -->
+
+        <div class="ball" id="ball"></div>
+
+
+        <!-- MESSAGE -->
+
+        <div class="message" id="message"></div>
+
+
+        <!-- POWER -->
+
+        <div class="power-area">
+
+            <div class="power-label">
+                POWER
+            </div>
+
+            <div class="power-bar">
+
+                <div
+                    class="power-fill"
+                    id="powerFill">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- AIM -->
+
+        <div class="aim">
+
+            <button
+                class="target"
+                id="leftTarget"
+                onclick="chooseTarget('left')">
+                ↖
+            </button>
+
+            <button
+                class="target active"
+                id="centerTarget"
+                onclick="chooseTarget('center')">
+                ↑
+            </button>
+
+            <button
+                class="target"
+                id="rightTarget"
+                onclick="chooseTarget('right')">
+                ↗
+            </button>
+
+        </div>
+
+
+        <!-- SHOOT -->
+
+        <button
+            class="shoot-button"
+            id="shootButton"
+            onclick="shoot()">
+
+            ⚡ SHOOT
+
+        </button>
+
+    </div>
+
+
+    <!-- RESULT -->
+
+    <div class="result" id="result">
+
+        <div class="result-box">
+
+            <h1>🏆 SHOOTOUT OVER</h1>
+
+            <div class="final-score">
+                <span id="finalScore">0</span>/5
+            </div>
+
+            <div class="result-text" id="resultText">
+                Great game!
+            </div>
+
+            <button
+                class="play-again"
+                onclick="restartGame()">
+
+                PLAY AGAIN
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let score = 0;
+let round = 1;
+
+let target = "center";
+
+let power = 60;
+
+let shooting = false;
+
+let powerDirection = 1;
+
+let powerTimer;
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const startScreen =
+    document.getElementById("startScreen");
+
+const keeper =
+    document.getElementById("keeper");
+
+const ball =
+    document.getElementById("ball");
+
+const message =
+    document.getElementById("message");
+
+const scoreDisplay =
+    document.getElementById("score");
+
+const roundDisplay =
+    document.getElementById("round");
+
+const powerFill =
+    document.getElementById("powerFill");
+
+const shootButton =
+    document.getElementById("shootButton");
+
+const result =
+    document.getElementById("result");
+
+const finalScore =
+    document.getElementById("finalScore");
+
+const resultText =
+    document.getElementById("resultText");
+
+
+/* =========================
+   START GAME
+========================= */
+
+function startGame(){
+
+    startScreen.style.display = "none";
+
+    resetGame();
+
+    startPower();
+
+}
+
+
+/* =========================
+   POWER METER
+========================= */
+
+function startPower(){
+
+    clearInterval(powerTimer);
+
+    powerTimer = setInterval(() => {
+
+        power += powerDirection * 2;
+
+        if(power >= 100){
+
+            power = 100;
+
+            powerDirection = -1;
+
+        }
+
+        if(power <= 20){
+
+            power = 20;
+
+            powerDirection = 1;
+
+        }
+
+        powerFill.style.width =
+            power + "%";
+
+    }, 40);
+
+}
+
+
+/* =========================
+   CHOOSE TARGET
+========================= */
+
+function chooseTarget(direction){
+
+    if(shooting) return;
+
+    target = direction;
+
+    document
+        .getElementById("leftTarget")
+        .classList.remove("active");
+
+    document
+        .getElementById("centerTarget")
+        .classList.remove("active");
+
+    document
+        .getElementById("rightTarget")
+        .classList.remove("active");
+
+    document
+        .getElementById(direction + "Target")
+        .classList.add("active");
+
+}
+
+
+/* =========================
+   SHOOT
+========================= */
+
+function shoot(){
+
+    if(shooting) return;
+
+    shooting = true;
+
+    clearInterval(powerTimer);
+
+    shootButton.disabled = true;
+
+    /* goalkeeper randomly chooses */
+
+    const directions =
+        ["left","center","right"];
+
+    const keeperDirection =
+        directions[
+            Math.floor(
+                Math.random() *
+                directions.length
+            )
+        ];
+
+
+    /* goalkeeper movement */
+
+    keeper.className = "keeper";
+
+    if(keeperDirection === "left"){
+
+        keeper.classList.add("dive-left");
+
+    }
+
+    if(keeperDirection === "right"){
+
+        keeper.classList.add("dive-right");
+
+    }
+
+    if(keeperDirection === "center"){
+
+        keeper.classList.add("dive-center");
+
+    }
+
+
+    /* ball movement */
+
+    ball.style.left =
+        target === "left"
+        ? "32%"
+        : target === "right"
+        ? "68%"
+        : "50%";
+
+
+    ball.style.bottom =
+        (380 + power * 0.5) + "px";
+
+
+    ball.style.transform =
+        "translateX(-50%) scale(.65) rotate(360deg)";
+
+
+    setTimeout(() => {
+
+        if(target === keeperDirection){
+
+            showMessage(
+                "🧤 SAVED!",
+                false
+            );
+
+        }else{
+
+            score++;
+
+            scoreDisplay.textContent =
+                score;
+
+            showMessage(
+                "⚽ GOAL!",
+                true
+            );
+
+        }
+
+    },600);
+
+
+    setTimeout(() => {
+
+        if(round >= 5){
+
+            finishGame();
+
+        }else{
+
+            nextRound();
+
+        }
+
+    },1600);
+
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(text, isGoal){
+
+    message.textContent = text;
+
+    message.className =
+        "message show " +
+        (isGoal
+            ? "goal-message"
+            : "save-message");
+
+}
+
+
+/* =========================
+   NEXT ROUND
+========================= */
+
+function nextRound(){
+
+    round++;
+
+    roundDisplay.textContent =
+        round;
+
+    ball.style.left = "50%";
+
+    ball.style.bottom = "170px";
+
+    ball.style.transform =
+        "translateX(-50%)";
+
+    keeper.className = "keeper";
+
+    message.className = "message";
+
+    target = "center";
+
+    document
+        .getElementById("leftTarget")
+        .classList.remove("active");
+
+    document
+        .getElementById("rightTarget")
+        .classList.remove("active");
+
+    document
+        .getElementById("centerTarget")
+        .classList.add("active");
+
+    shooting = false;
+
+    shootButton.disabled = false;
+
+    power = 60;
+
+    powerDirection = 1;
+
+    powerFill.style.width = "60%";
+
+    startPower();
+
+}
+
+
+/* =========================
+   FINISH GAME
+========================= */
+
+function finishGame(){
+
+    finalScore.textContent =
+        score;
+
+    if(score === 5){
+
+        resultText.textContent =
+            "🔥 PERFECT SHOOTOUT!";
+
+    }else if(score >= 3){
+
+        resultText.textContent =
+            "⚽ Great performance!";
+
+    }else if(score > 0){
+
+        resultText.textContent =
+            "Keep practising!";
+
+    }else{
+
+        resultText.textContent =
+            "The goalkeeper won this time.";
+
+    }
+
+    result.classList.add("show");
+
+}
+
+
+/* =========================
+   RESTART
+========================= */
+
+function restartGame(){
+
+    result.classList.remove("show");
+
+    resetGame();
+
+    startPower();
+
+}
+
+
+/* =========================
+   RESET
+========================= */
+
+function resetGame(){
+
+    score = 0;
+
+    round = 1;
+
+    target = "center";
+
+    power = 60;
+
+    powerDirection = 1;
+
+    shooting = false;
+
+    scoreDisplay.textContent =
+        "0";
+
+    roundDisplay.textContent =
+        "1";
+
+    powerFill.style.width =
+        "60%";
+
+    ball.style.left =
+        "50%";
+
+    ball.style.bottom =
+        "170px";
+
+    ball.style.transform =
+        "translateX(-50%)";
+
+    keeper.className =
+        "keeper";
+
+    message.className =
+        "message";
+
+    shootButton.disabled =
+        false;
+
+    document
+        .getElementById("leftTarget")
+        .classList.remove("active");
+
+    document
+        .getElementById("rightTarget")
+        .classList.remove("active");
+
+    document
+        .getElementById("centerTarget")
+        .classList.add("active");
+
+}
+
+</script>
+
+</body>
+    </html>
