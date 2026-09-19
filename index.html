@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeBryne Penalty</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #071b12;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.game {
+    width: 100%;
+    max-width: 500px;
+    min-height: 100vh;
+    background: linear-gradient(#08752f, #064d23);
+    position: relative;
+    overflow: hidden;
+}
+
+/* TOP BAR */
+.top {
+    height: 75px;
+    background: rgba(0,0,0,0.35);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 18px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #ffd700;
+}
+
+.score-box {
+    text-align: right;
+}
+
+.score-label {
+    font-size: 11px;
+    opacity: 0.7;
+}
+
+.score {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/* FIELD */
+.field {
+    position: relative;
+    height: calc(100vh - 75px);
+    min-height: 600px;
+    overflow: hidden;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            rgba(255,255,255,0.025) 0px,
+            rgba(255,255,255,0.025) 45px,
+            transparent 45px,
+            transparent 90px
+        );
+}
+
+/* CROWD */
+.stadium-light {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    filter: blur(20px);
+    top: 15px;
+}
+
+.light1 { left: 20px; }
+.light2 { right: 20px; }
+
+/* GOAL */
+.goal {
+    position: absolute;
+    top: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 310px;
+    height: 190px;
+    border: 8px solid white;
+    border-bottom: 0;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            transparent 0px,
+            transparent 25px,
+            rgba(255,255,255,0.3) 26px,
+            transparent 27px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 25px,
+            rgba(255,255,255,0.3) 26px,
+            transparent 27px
+        );
+}
+
+/* GOAL NET BACK */
+.goal::after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: -35px;
+    height: 35px;
+    border-left: 5px solid white;
+    border-right: 5px solid white;
+    transform: skewX(-15deg);
+}
+
+/* GOALKEEPER */
+.keeper {
+    position: absolute;
+    top: 145px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 58px;
+    height: 95px;
+    z-index: 5;
+    transition: 0.45s ease;
+}
+
+.head {
+    width: 28px;
+    height: 28px;
+    background: #8d5524;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.body {
+    width: 45px;
+    height: 50px;
+    background: #e8b923;
+    border-radius: 12px 12px 5px 5px;
+    margin: -1px auto 0;
+}
+
+.arm {
+    position: absolute;
+    width: 15px;
+    height: 48px;
+    background: #e8b923;
+    border-radius: 10px;
+    top: 28px;
+}
+
+.arm.left {
+    left: 1px;
+    transform: rotate(25deg);
+}
+
+.arm.right {
+    right: 1px;
+    transform: rotate(-25deg);
+}
+
+.leg {
+    position: absolute;
+    width: 15px;
+    height: 42px;
+    background: #111;
+    top: 72px;
+    border-radius: 8px;
+}
+
+.leg.left { left: 14px; }
+.leg.right { right: 14px; }
+
+/* KEEPER DIVE */
+.keeper.left-dive {
+    transform: translateX(-125px) rotate(-35deg);
+}
+
+.keeper.right-dive {
+    transform: translateX(70px) rotate(35deg);
+}
+
+.keeper.center-save {
+    transform: translateX(-50%) scale(1.05);
+}
+
+/* BALL */
+.ball {
+    position: absolute;
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 45px;
+    height: 45px;
+    background: white;
+    border-radius: 50
